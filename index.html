@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMO Server 取扱説明書</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --bg: #ecf0f1;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --update-bg: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab-button {
+            background-color: #bdc3c7;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px 5px 0 0;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .tab-button.active {
+            background-color: var(--accent);
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+        }
+        .command-group {
+            margin-top: 15px;
+            background-color: #f1f8ff;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent);
+        }
+        .command-group h3 {
+            margin-top: 0;
+            color: var(--secondary);
+        }
+        .command {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 10px;
+            margin: 8px 0;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+        }
+        .command span {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 8px 0;
+        }
+        /* アップデート履歴用のスタイル */
+        .update-box {
+            background-color: var(--update-bg);
+            border-left: 4px solid #2ecc71;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .update-date {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .update-category {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+            color: white;
+        }
+        .badge-new { background-color: #e74c3c; }
+        .badge-fix { background-color: #3498db; }
+        .badge-balance { background-color: #f39c12; }
+        
+        ul, ol {
+            padding-left: 20px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>MMO Server 総合取扱説明書</h1>
+    <p>プレイヤー向けガイド ＆ 運営・管理者向けマニュアル</p>
+</header>
+
+<div class="container">
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'player')">プレイヤー向け</button>
+        <button class="tab-button" onclick="openTab(event, 'admin')">運営・管理者向け</button>
+        <button class="tab-button" onclick="openTab(event, 'updates')">アップデート履歴</button>
+    </div>
+
+    <!-- ================= プレイヤー向けコンテンツ ================= -->
+    <div id="player" class="tab-content active">
+        <div class="card">
+            <h2>🏠 拠点・移動コマンド</h2>
+            <p>マイクラでの生活や探索を快適にするための必須コマンド群です。</p>
+            <div class="command"><span>/sethome &lt;名前&gt;</span> - 現在の場所を自分の「ホーム」として登録します。(最大3個まで登録可能！)</div>
+            <div class="command"><span>/home &lt;名前&gt;</span> - 登録したホームへテレポートします。</div>
+            <div class="highlight">
+                <strong>💡 ホームの削除:</strong><br>
+                <div class="command" style="border:none; margin:5px 0 0 0; padding:0; background:transparent;"><span>/delhome &lt;名前&gt;</span> - 不要になったホームを削除します。(/remhome でも可)</div>
+            </div>
+            <div class="command"><span>/spawn</span> - サーバーの初期スポーン地点に戻ります。</div>
+            <div class="command"><span>/tpa &lt;プレイヤー名&gt;</span> - 相手の場所にテレポートする許可を申請します。</div>
+            <div class="command"><span>/tpaccept</span> - 相手からのテレポート申請を許可します。</div>
+            <div class="command"><span>/back</span> - 死亡した場所、または直前にテレポートした場所にワープして戻ります。</div>
+        </div>
+
+        <div class="card">
+            <h2>⚔️ 装備とカスタマイズ (進化・防具)</h2>
+            <p>固有武器のスキルシステムや、新登場の防具・強化(限界突破)についてです。</p>
+            
+            <div class="command-group">
+                <h3>自由にスキルを組み替えよう！</h3>
+                <div class="command"><span>/mmoskill</span> - 武器のスキルカスタマイズ画面を開きます。</div>
+                <p>手に固有武器を持って <code>/mmoskill</code> を実行すると、全12種類のスキル一覧が表示されます。<br>
+                ボスを討伐して獲得した <strong>SP(スキルポイント)</strong> を使って新しいスキルを解放し、全8枠(RRR〜LLL)のコンボに好きなスキルをセットしましょう。</p>
+            </div>
+
+            <div class="command-group">
+                <h3>【新機能】武器の限界突破 (合成強化)</h3>
+                <div class="command"><span>/mmoforge</span> - 武器の強化(合成)画面を開きます。</div>
+                <p>「ベースとなる固有武器」と「素材にする同じ固有武器」を合成することで、武器を <strong>最大+10</strong> まで強化できます！<br>
+                強化値が上がるごとに、武器のスキルダメージや効果量がアップ！（+10で性能が2倍になります）</p>
+            </div>
+
+            <div class="command-group">
+                <h3>【新機能】固有防具のパッシブ効果</h3>
+                <p>新しく追加されたボスモチーフの防具（炎魔神の兜など）を装備すると、持っているだけで<strong>「最大体力増加」や「水中の移動速度アップ」</strong>などの強力なパッシブ(常時発動)効果を得られます。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🐉 ダンジョンとパーティシステム</h2>
+            <p>ボスとの戦いやパーティに関するコマンドです。ダンジョンのゲートは右クリックで入場できます。</p>
+            <div class="command"><span>/party invite &lt;プレイヤー名&gt;</span> - プレイヤーをパーティに招待します。</div>
+            <div class="command"><span>/party accept</span> - パーティの招待を受け入れます。(パーティでのダンジョン突入に必須)</div>
+            <div class="command"><span>/insurance</span> - 500円を消費して保険をかけます。死亡時のアイテム全ロスを防ぎます。</div>
+            <div class="command"><span>/mmotitle list</span> - 自分のボス討伐数や、獲得した「称号」を確認します。</div>
+            <div class="command"><span>/mmotitle set &lt;称号名&gt;</span> - 獲得した称号をセットします。チャットやTABリストに堂々と表示されます！</div>
+        </div>
+
+        <div class="card">
+            <h2>💰 経済とお店 (公式ショップ＆オークション)</h2>
+            <p>サーバー内でのお金の稼ぎ方と、アイテムの売買システムです。</p>
+            <div class="command-group">
+                <h3>公式ショップ＆買取所 (超パワーアップ！)</h3>
+                <div class="command"><span>/mmosell</span> - 【素材・鉱石買取所】ボス素材だけでなく、<strong>ゾンビ肉や火薬、金、ダイヤ</strong>などの通常素材も一括で売却できるようになりました！まずはここで資金を稼ごう！</div>
+                <div class="command"><span>/mmoshop</span> - 【闇の行商人】パックガチャや便利アイテムを購入できます。
+                    <ul style="margin-top: 5px;">
+                        <li><strong>資材パックガチャの大当たり:</strong> 建材パックからは「ビーコン」や「スポナー」、鉱夫パックからは「古代の残骸」等の超レアアイテムが出るかも…！？</li>
+                        <li><strong>便利アイテム販売:</strong> 喉から手が出るほど欲しい「修繕のエンチャント本」なども直接買えるようになりました。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="command-group">
+                <h3>プレイヤー間の取引</h3>
+                <div class="command"><span>/ah</span> - オークションハウスを開きます。プレイヤー間でアイテムを出品・購入できます。</div>
+                <div class="command"><span>/ah sell &lt;価格&gt;</span> - 手に持っているアイテムをオークションに出品します。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 運営・管理者向けコンテンツ ================= -->
+    <div id="admin" class="tab-content">
+        <div class="card">
+            <h2>⚙️ MMOPlugin (ダンジョン設定)</h2>
+            <p>新しい階層を作った際に、システムに座標を登録するコマンドです。</p>
+            <div class="command"><span>/mmodungeon setgate &lt;階層ID&gt;</span> - 視線先のブロックをダンジョン入場ゲートに設定します。(例: /mmodungeon setgate 1)</div>
+            <div class="command"><span>/mmodungeon setbossroom &lt;階層ID&gt;</span> - 現在位置をボス部屋のTP先に設定します。</div>
+            <div class="command"><span>/mmodungeon setlobby &lt;階層ID&gt;</span> - 現在位置をボス討伐後の帰還用ロビーに設定します。</div>
+            <div class="command"><span>/mmoitem &lt;装備ID&gt;</span> - 固有武器や防具を取得します。(例: levatein, ifrit_helmet)</div>
+        </div>
+
+        <div class="card">
+            <h2>⏱️ チャンクローダー (常時読み込み)</h2>
+            <p>自動農業施設や特殊ギミックを、プレイヤーがいなくても常に動かし続けるための機能です。</p>
+            <div class="command"><span>/mmochunk load</span> - 現在立っているチャンクを常時読み込みに設定します。</div>
+            <div class="command"><span>/mmochunk unload</span> - 現在立っているチャンクの常時読み込みを解除します。</div>
+            <div class="command"><span>/mmochunk list</span> - 常時読み込み設定されているチャンクの一覧を表示します。</div>
+            <p style="color: red; font-size: 14px;">※注意: 多用しすぎるとサーバーが重くなるため、最低限の利用に留めてください。</p>
+        </div>
+    </div>
+
+    <!-- ================= アップデート履歴コンテンツ ================= -->
+    <div id="updates" class="tab-content">
+        <div class="card">
+            <h2>📝 パッチノート ＆ 変更履歴</h2>
+            <p>サーバーに追加された新機能やバランス調整の履歴です。</p>
+
+            <!-- 最新のアップデート -->
+            <div class="update-box">
+                <div class="update-date">大型アップデート (v1.2) - 最新</div>
+                <ul>
+                    <li><span class="update-category badge-new">新システム</span> <strong>武器の限界突破（鍛冶）システムを追加！</strong><br>
+                        <code>/mmoforge</code> にて、同じ固有武器同士を合成して最大+10まで強化できるようになりました。
+                    </li>
+                    <li><span class="update-category badge-new">新装備</span> <strong>固有防具を追加！</strong><br>
+                        ボスをモチーフにした特別な防具が登場。装備するだけで強力なパッシブ効果（体力増加や水中の移動速度アップなど）が発動します。
+                    </li>
+                    <li><span class="update-category badge-balance">調整</span> <strong>ショップ・買取のラインナップを大幅改善</strong><br>
+                        <code>/mmosell</code> でゾンビ肉やダイヤなどの通常アイテムが売れるようになりました。<br>
+                        <code>/mmoshop</code> のパックガチャから、低確率でビーコンや古代の残骸などの大当たりが出るようになりました。さらに「修繕のエンチャント本」の直売りを開始しました。
+                    </li>
+                    <li><span class="update-category badge-fix">修正</span> スキルカスタマイズ画面（<code>/mmoskill</code>）の表示バグを修正しました。</li>
+                </ul>
+            </div>
+
+            <!-- 過去のアップデート (テンプレートとして置いておきます) -->
+            <div class="update-box">
+                <div class="update-date">アップデート (v1.1)</div>
+                <ul>
+                    <li><span class="update-category badge-new">新システム</span> 武器のスキルを自由に付け替えられる <code>/mmoskill</code> を実装しました。</li>
+                    <li><span class="update-category badge-new">新ボス</span> 第2層ボス「海神 リヴァイアサン」と新武器を実装しました。</li>
+                </ul>
+            </div>
+
+            <div class="update-box">
+                <div class="update-date">サーバーオープン (v1.0)</div>
+                <ul>
+                    <li>サーバーを正式公開しました。</li>
+                    <li>第1層ダンジョンとボス「炎魔神 イフリート」を実装しました。</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-button");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+</script>
+
+</body>
+</html>
