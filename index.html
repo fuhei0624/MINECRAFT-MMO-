@@ -123,7 +123,7 @@
             border-radius: 4px;
         }
         
-        /* ✨ QuickShop 特別スタイル ✨ */
+        /* QuickShop 特別スタイル */
         .shop-guide {
             background: linear-gradient(to right, #ffffff, #f0fbff);
             border: 2px solid #f1c40f;
@@ -238,10 +238,6 @@
             <p>マイクラでの生活や探索を快適にするための必須コマンド群です。</p>
             <div class="command"><span>/sethome &lt;名前&gt;</span> - 現在の場所を自分の「ホーム」として登録します。(最大3個まで登録可能！)</div>
             <div class="command"><span>/home &lt;名前&gt;</span> - 登録したホームへテレポートします。</div>
-            <div class="highlight" style="background-color: #fef9e7; border-left-color: #f39c12;">
-                <strong>💡 ホームの削除:</strong><br>
-                <div class="command" style="border:none; margin:5px 0 0 0; padding:0; background:transparent;"><span>/delhome &lt;名前&gt;</span> - 不要になったホームを削除します。(/remhome でも可)</div>
-            </div>
             <div class="command"><span>/spawn</span> - サーバーの初期スポーン地点に戻ります。</div>
             <div class="command"><span>/tpa &lt;プレイヤー名&gt;</span> - 相手の場所にテレポートする許可を申請します。</div>
             <div class="command"><span>/tpaccept</span> - 相手からのテレポート申請を許可します。</div>
@@ -261,12 +257,8 @@
 
             <div class="highlight">
                 <h3 style="margin-top:0; color:#8e44ad;">【NEW!】防具専用スキル (Shift + F)</h3>
-                <p>各ボスからドロップする「固有防具」を装備した状態で、<strong>スニーク(しゃがみ)しながら Fキー(オフハンド切り替えキー) </strong>を押すと、防具に秘められた専用スキルが発動します！</p>
-                <ul>
-                    <li><strong>炎魔神の兜:</strong> 周囲の敵を炎上させ吹き飛ばす！</li>
-                    <li><strong>海神の胸当て:</strong> 自身と周囲の味方を回復し、状態異常を解除！</li>
-                    <li><strong>猛毒の脚甲:</strong> 周囲の敵をクモの糸で拘束し、猛毒を与える！</li>
-                </ul>
+                <p>各ボスから低確率でドロップする「固有防具」を装備した状態で、<strong>スニーク(しゃがみ)しながら Fキー(オフハンド切り替えキー) </strong>を押すと、防具に秘められた専用スキルが発動します！</p>
+                <p>防具のアイテム説明文（Lore）に発動するスキルの詳細が書かれているのでチェックしてみましょう！</p>
             </div>
 
             <div class="command-group">
@@ -356,7 +348,7 @@
             <div class="command"><span>/mmodungeon setgate &lt;階層ID&gt;</span> - 視線先のブロックをダンジョン入場ゲートに設定します。(例: /mmodungeon setgate 1)</div>
             <div class="command"><span>/mmodungeon setbossroom &lt;階層ID&gt;</span> - 現在位置をボス部屋のTP先に設定します。</div>
             <div class="command"><span>/mmodungeon setlobby &lt;階層ID&gt;</span> - 現在位置をボス討伐後の帰還用ロビーに設定します。</div>
-            <div class="command"><span>/mmoitem &lt;装備ID&gt;</span> - 固有武器や防具を取得します。(例: levatein, ifrit_helmet)</div>
+            <div class="command"><span>/mmoitem &lt;装備ID&gt;</span> - 固有武器や防具を取得します。(例: levatein, goliath_boots)</div>
         </div>
 
         <div class="card">
@@ -375,18 +367,26 @@
             <h2>📝 パッチノート ＆ 変更履歴</h2>
             <p>サーバーに追加された新機能やバランス調整の履歴です。</p>
 
-            <!-- 最新のアップデート -->
             <div class="update-box">
-                <div class="update-date">大型アップデート (v1.4) - 最新</div>
+                <div class="update-date">大型アップデート (v1.5) - 最新</div>
+                <ul>
+                    <li><span class="update-category badge-new">新ボス</span> <strong>第4層ボス「鉱石王 ゴライアス」を実装！</strong><br>
+                        超絶タフなアイアンゴーレムが大地を揺らしてプレイヤーを追い詰めます。討伐すると「金剛石の大槌」と「鉱石王の重靴」をドロップ！
+                    </li>
+                    <li><span class="update-category badge-balance">調整</span> 各固有防具のアイテム説明文（Lore）に、発動するパッシブ効果や「Shift+F」スキルの詳細が明記されるようになり、効果が分かりやすくなりました。</li>
+                </ul>
+            </div>
+
+            <div class="update-box">
+                <div class="update-date">大型アップデート (v1.4)</div>
                 <ul>
                     <li><span class="update-category badge-new">新ボス</span> <strong>第3層ボス「猛毒女王 アラクネ」を実装！</strong><br>
-                        巨大な毒蜘蛛がプレイヤーを罠にはめます。討伐すると、毒属性のスキルを持った「魔弓・サジタリウス」と、新たな固有防具「猛毒の脚甲」をドロップします。
+                        巨大な毒蜘蛛が罠にはめます。討伐で毒属性の「魔弓・サジタリウス」と固有防具「猛毒の脚甲」をドロップします。
                     </li>
                     <li><span class="update-category badge-new">新システム</span> <strong>防具専用スキルを追加！</strong><br>
-                        固有防具を装備した状態で <strong>「スニーク ＋ Fキー」</strong> を押すと、各防具に秘められた強力なアクティブスキル（マナ消費）が発動するようになりました！
+                        固有防具を装備した状態で <strong>「スニーク ＋ Fキー」</strong> を押すと、強力なアクティブスキル（マナ消費）が発動するようになりました！
                     </li>
-                    <li><span class="update-category badge-balance">調整</span> 武器だけでなく、固有防具も <code>/mmoforge</code> で+10まで進化（合成強化）できるようになりました。防具の防御力やスキルの威力が上がります。</li>
-                    <li><span class="update-category badge-fix">削除</span> 世界観調整のため、全アイテムショップ（EconomyShopGUI）を削除し、従来の買取＆行商人のみに戻しました。プレイヤー間での取引（QuickShop等）をご活用ください。</li>
+                    <li><span class="update-category badge-balance">調整</span> 武器だけでなく、固有防具も <code>/mmoforge</code> で+10まで進化（合成強化）できるようになりました。</li>
                 </ul>
             </div>
 
@@ -396,17 +396,6 @@
                     <li><span class="update-category badge-new">新システム</span> <strong>武器の限界突破（鍛冶）システムを追加！</strong><br>
                         <code>/mmoforge</code> にて、同じ固有武器同士を合成して最大+10まで強化できるようになりました。
                     </li>
-                    <li><span class="update-category badge-balance">調整</span> <strong>ショップ・買取のラインナップを大幅改善</strong><br>
-                        <code>/mmoshop</code> のパックガチャから、低確率でビーコンや古代の残骸などの大当たりが出るようになりました。さらに「修繕のエンチャント本」の直売りを開始しました。
-                    </li>
-                </ul>
-            </div>
-
-            <div class="update-box">
-                <div class="update-date">アップデート (v1.1)</div>
-                <ul>
-                    <li><span class="update-category badge-new">新システム</span> 武器のスキルを自由に付け替えられる <code>/mmoskill</code> を実装しました。</li>
-                    <li><span class="update-category badge-new">新ボス</span> 第2層ボス「海神 リヴァイアサン」と新武器を実装しました。</li>
                 </ul>
             </div>
 
