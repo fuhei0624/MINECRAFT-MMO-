@@ -28,7 +28,7 @@
             padding: 25px 0;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            background: linear-gradient(135deg, #2c3e50, #8e44ad);
+            background: linear-gradient(135deg, #2c3e50, #e74c3c);
         }
         header h1 {
             margin: 0 0 10px 0;
@@ -116,71 +116,31 @@
             font-weight: bold;
         }
         .highlight {
-            background-color: #f9ebff;
-            border-left: 5px solid #9b59b6;
+            background-color: #fdf2e9;
+            border-left: 5px solid #f39c12;
             padding: 15px;
             margin: 15px 0;
             border-radius: 4px;
         }
         
-        /* QuickShop 特別スタイル */
-        .shop-guide {
-            background: linear-gradient(to right, #ffffff, #f0fbff);
-            border: 2px solid #f1c40f;
+        .boss-guide {
+            background: linear-gradient(to right, #ffffff, #ffeee6);
+            border: 2px solid #e74c3c;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             margin-top: 20px;
         }
-        .shop-guide h3 {
-            color: #d35400;
-            text-align: center;
-            font-size: 1.4em;
-            margin-bottom: 20px;
+        .boss-guide h3 {
+            color: #c0392b;
+            margin-top: 0;
         }
-        .shop-guide p {
-            text-align: center;
-            font-weight: bold;
-            color: #7f8c8d;
-        }
-        .step-box {
-            display: flex;
-            align-items: center;
-            margin: 15px 0;
-            background-color: #fff;
-            padding: 15px 20px;
-            border-radius: 50px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border: 1px solid #f1c40f;
-            transition: transform 0.2s;
-        }
-        .step-box:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 8px rgba(241, 196, 15, 0.2);
-        }
-        .step-num {
-            background-color: #f1c40f;
-            color: white;
-            font-weight: bold;
-            font-size: 1.4em;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-right: 20px;
-            flex-shrink: 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        .step-text {
-            font-size: 1.1em;
-            color: #2c3e50;
+        .boss-guide ul {
+            margin-bottom: 0;
         }
 
-        /* アップデート履歴用のスタイル */
         .update-box {
             background-color: var(--update-bg);
-            border-left: 5px solid #9b59b6;
+            border-left: 5px solid #e74c3c;
             padding: 20px;
             margin-bottom: 25px;
             border-radius: 6px;
@@ -188,7 +148,7 @@
         }
         .update-date {
             font-weight: bold;
-            color: #8e44ad;
+            color: #c0392b;
             font-size: 1.2em;
             margin-bottom: 12px;
             border-bottom: 1px dashed #d1d8e0;
@@ -233,15 +193,29 @@
 
     <!-- ================= プレイヤー向けコンテンツ ================= -->
     <div id="player" class="tab-content active">
+        
         <div class="card">
-            <h2>🏠 拠点・移動コマンド</h2>
-            <p>マイクラでの生活や探索を快適にするための必須コマンド群です。</p>
-            <div class="command"><span>/sethome &lt;名前&gt;</span> - 現在の場所を自分の「ホーム」として登録します。(最大3個まで登録可能！)</div>
-            <div class="command"><span>/home &lt;名前&gt;</span> - 登録したホームへテレポートします。</div>
-            <div class="command"><span>/spawn</span> - サーバーの初期スポーン地点に戻ります。</div>
-            <div class="command"><span>/tpa &lt;プレイヤー名&gt;</span> - 相手の場所にテレポートする許可を申請します。</div>
-            <div class="command"><span>/tpaccept</span> - 相手からのテレポート申請を許可します。</div>
-            <div class="command"><span>/back</span> - 死亡した場所、または直前にテレポートした場所にワープして戻ります。</div>
+            <h2>🐉 ダンジョンとボス戦の極意</h2>
+            <p>ダンジョン最深部に潜むボス達は、ただ殴るだけでは倒せません。以下の「ボスの極意」をしっかり読んで挑んでください！</p>
+            
+            <div class="boss-guide">
+                <h3>⚠️ ボス戦 2つのルール ⚠️</h3>
+                <ul>
+                    <li><strong>① 床の「赤色マーカー(予兆)」から逃げろ！</strong><br>
+                        ボスが大技の詠唱を始めると、床に赤色の範囲（AoE）が表示されます。詠唱完了時にその範囲内にいると<b>即死級のダメージ</b>を受けるので、すぐに範囲外へダッシュで避けてください！
+                    </li>
+                    <li style="margin-top: 10px;"><strong>② 敵の「セリフ」に弱点のヒントが隠されている！</strong><br>
+                        「弓が効かない！」「剣の攻撃が通らない！」…そんな時は、敵が喋るセリフをよく聞いてください。<b>雪玉、ハサミ、ツルハシ、火打石</b>など、特定のアイテムを使うことで形勢が逆転するギミック（謎解き）が用意されています！
+                    </li>
+                </ul>
+            </div>
+
+            <div class="command-group">
+                <h3>パーティ用コマンド</h3>
+                <div class="command"><span>/party invite &lt;プレイヤー名&gt;</span> - プレイヤーをパーティに招待します。</div>
+                <div class="command"><span>/party accept</span> - パーティの招待を受け入れます。(パーティでのダンジョン突入に必須)</div>
+                <div class="command"><span>/insurance</span> - 500円を消費して保険をかけます。死亡時のアイテム全ロスを防ぎます。</div>
+            </div>
         </div>
 
         <div class="card">
@@ -256,7 +230,7 @@
             </div>
 
             <div class="highlight">
-                <h3 style="margin-top:0; color:#8e44ad;">【NEW!】防具専用スキル (Shift + F)</h3>
+                <h3 style="margin-top:0; color:#8e44ad;">防具専用スキル (Shift + F)</h3>
                 <p>各ボスから低確率でドロップする「固有防具」を装備した状態で、<strong>スニーク(しゃがみ)しながら Fキー(オフハンド切り替えキー) </strong>を押すと、防具に秘められた専用スキルが発動します！</p>
                 <p>防具のアイテム説明文（Lore）に発動するスキルの詳細が書かれているのでチェックしてみましょう！</p>
             </div>
@@ -265,18 +239,16 @@
                 <h3>装備の限界突破 (合成強化)</h3>
                 <div class="command"><span>/mmoforge</span> - 装備の強化(合成)画面を開きます。</div>
                 <p>同じ固有武器や固有防具同士を合成することで、装備を <strong>最大+10</strong> まで強化できます！<br>
-                強化値が上がるごとに、武器の攻撃力や防具の防御力がアップし、さらに<strong>スキル発動時の消費マナが減り、威力が上がります！</strong>（+10で威力2倍＆消費マナ半減）</p>
+                強化値が上がるごとに、武器の攻撃力や防具の防御力がアップし、さらに<strong>スキル発動時の消費マナが減り、威力が上がります！</strong></p>
             </div>
         </div>
 
         <div class="card">
-            <h2>🐉 ダンジョンとパーティシステム</h2>
-            <p>ボスとの戦いやパーティに関するコマンドです。ダンジョンのゲートは右クリックで入場できます。</p>
-            <div class="command"><span>/party invite &lt;プレイヤー名&gt;</span> - プレイヤーをパーティに招待します。</div>
-            <div class="command"><span>/party accept</span> - パーティの招待を受け入れます。(パーティでのダンジョン突入に必須)</div>
-            <div class="command"><span>/insurance</span> - 500円を消費して保険をかけます。死亡時のアイテム全ロスを防ぎます。</div>
-            <div class="command"><span>/mmotitle list</span> - 自分のボス討伐数や、獲得した「称号」を確認します。</div>
-            <div class="command"><span>/mmotitle set &lt;称号名&gt;</span> - 獲得した称号をセットします。チャットやTABリストに堂々と表示されます！</div>
+            <h2>🏠 拠点・移動コマンド</h2>
+            <div class="command"><span>/sethome &lt;名前&gt;</span> - 現在の場所を自分の「ホーム」として登録します。(最大3個まで登録可能！)</div>
+            <div class="command"><span>/home &lt;名前&gt;</span> - 登録したホームへテレポートします。</div>
+            <div class="command"><span>/spawn</span> - サーバーの初期スポーン地点に戻ります。</div>
+            <div class="command"><span>/tpa &lt;プレイヤー名&gt;</span> - 相手の場所にテレポートする許可を申請します。</div>
         </div>
     </div>
 
@@ -300,42 +272,33 @@
             <h2>✨ 光るアイテムが浮かぶ！自分のお店（QuickShop）</h2>
             <p>不要なアイテムを他のプレイヤーに売ったり、逆に買い取ったりできるチェストショップの作り方です。お店を作ると、<strong>チェストの上にアイテムがプカプカ浮かんで光る</strong>のでとってもオシャレです！</p>
             
-            <div class="shop-guide">
-                <h3>🛒 アイテムを「売る」お店の作り方</h3>
-                <p>たったの4ステップで、あなただけの光るお店が完成します！</p>
+            <div style="background: linear-gradient(to right, #ffffff, #f0fbff); border: 2px solid #f1c40f; border-radius: 12px; padding: 25px; margin-top: 20px;">
+                <h3 style="color: #d35400; text-align: center; margin-bottom: 20px;">🛒 アイテムを「売る」お店の作り方</h3>
                 
-                <div class="step-box">
-                    <div class="step-num">1</div>
-                    <div class="step-text">地面に <strong>チェスト</strong> を置きます。</div>
+                <div style="display: flex; align-items: center; margin: 15px 0; background-color: #fff; padding: 15px 20px; border-radius: 50px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #f1c40f;">
+                    <div style="background-color: #f1c40f; color: white; font-weight: bold; font-size: 1.4em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 20px; flex-shrink: 0;">1</div>
+                    <div style="font-size: 1.1em;">地面に <strong>チェスト</strong> を置きます。</div>
                 </div>
                 
-                <div class="step-box">
-                    <div class="step-num">2</div>
-                    <div class="step-text">売りたいアイテム（例: ダイヤモンド）を <strong>手に持ちます</strong>。</div>
+                <div style="display: flex; align-items: center; margin: 15px 0; background-color: #fff; padding: 15px 20px; border-radius: 50px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #f1c40f;">
+                    <div style="background-color: #f1c40f; color: white; font-weight: bold; font-size: 1.4em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 20px; flex-shrink: 0;">2</div>
+                    <div style="font-size: 1.1em;">売りたいアイテムを <strong>手に持ちます</strong>。</div>
                 </div>
                 
-                <div class="step-box">
-                    <div class="step-num">3</div>
-                    <div class="step-text">アイテムを持ったまま、設置したチェストを <strong>左クリック</strong> します。<br>
-                    <span style="font-size: 0.85em; color: #95a5a6;">（※チャット欄に「いくらで売りますか？」というメッセージが出ます）</span></div>
+                <div style="display: flex; align-items: center; margin: 15px 0; background-color: #fff; padding: 15px 20px; border-radius: 50px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #f1c40f;">
+                    <div style="background-color: #f1c40f; color: white; font-weight: bold; font-size: 1.4em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 20px; flex-shrink: 0;">3</div>
+                    <div style="font-size: 1.1em;">アイテムを持ったまま、チェストを <strong>左クリック</strong> します。</div>
                 </div>
                 
-                <div class="step-box">
-                    <div class="step-num">4</div>
-                    <div class="step-text">チャット入力欄を開き、<strong>値段（数字だけ）</strong> を入力してEnterを押します。（例: <code>500</code>）</div>
+                <div style="display: flex; align-items: center; margin: 15px 0; background-color: #fff; padding: 15px 20px; border-radius: 50px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #f1c40f;">
+                    <div style="background-color: #f1c40f; color: white; font-weight: bold; font-size: 1.4em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 20px; flex-shrink: 0;">4</div>
+                    <div style="font-size: 1.1em;">チャットを開き、<strong>値段（数字）</strong> を入力してEnterを押します。</div>
                 </div>
                 
                 <div style="text-align: center; margin-top: 20px;">
                     <strong>🎉 お店が完成！アイテムがチェストの上に浮かび上がります！ 🎉</strong><br>
                     <span style="font-size: 0.9em; color: #7f8c8d;">最後に、売りたいアイテムをチェストの中に補充しておきましょう。</span>
                 </div>
-            </div>
-
-            <div class="command-group">
-                <h3>オークションハウス（AH）</h3>
-                <p>チェストを置かずに、メニュー画面越しに全プレイヤーに向けて出品する方法です。</p>
-                <div class="command"><span>/ah</span> - オークションハウスを開き、他の人が出品しているアイテムを買えます。</div>
-                <div class="command"><span>/ah sell &lt;価格&gt;</span> - 手に持っているアイテムをオークションに出品します。</div>
             </div>
         </div>
     </div>
@@ -344,20 +307,10 @@
     <div id="admin" class="tab-content">
         <div class="card">
             <h2>⚙️ MMOPlugin (ダンジョン設定)</h2>
-            <p>新しい階層を作った際に、システムに座標を登録するコマンドです。</p>
-            <div class="command"><span>/mmodungeon setgate &lt;階層ID&gt;</span> - 視線先のブロックをダンジョン入場ゲートに設定します。(例: /mmodungeon setgate 1)</div>
-            <div class="command"><span>/mmodungeon setbossroom &lt;階層ID&gt;</span> - 現在位置をボス部屋のTP先に設定します。</div>
-            <div class="command"><span>/mmodungeon setlobby &lt;階層ID&gt;</span> - 現在位置をボス討伐後の帰還用ロビーに設定します。</div>
-            <div class="command"><span>/mmoitem &lt;装備ID&gt;</span> - 固有武器や防具を取得します。(例: levatein, goliath_boots)</div>
-        </div>
-
-        <div class="card">
-            <h2>⏱️ チャンクローダー (常時読み込み)</h2>
-            <p>自動農業施設や特殊ギミックを、プレイヤーがいなくても常に動かし続けるための機能です。</p>
-            <div class="command"><span>/mmochunk load</span> - 現在立っているチャンクを常時読み込みに設定します。</div>
-            <div class="command"><span>/mmochunk unload</span> - 現在立っているチャンクの常時読み込みを解除します。</div>
-            <div class="command"><span>/mmochunk list</span> - 常時読み込み設定されているチャンクの一覧を表示します。</div>
-            <p style="color: red; font-size: 14px;">※注意: 多用しすぎるとサーバーが重くなるため、最低限の利用に留めてください。</p>
+            <div class="command"><span>/mmodungeon setgate &lt;階層ID&gt;</span> - 視線先のブロックをダンジョン入場ゲートに設定。</div>
+            <div class="command"><span>/mmodungeon setbossroom &lt;階層ID&gt;</span> - 現在位置をボス部屋のTP先に設定。</div>
+            <div class="command"><span>/mmodungeon setlobby &lt;階層ID&gt;</span> - 現在位置をボス討伐後の帰還用ロビーに設定。</div>
+            <div class="command"><span>/mmoitem &lt;装備ID&gt;</span> - 固有武器や防具を取得します。</div>
         </div>
     </div>
 
@@ -367,35 +320,29 @@
             <h2>📝 パッチノート ＆ 変更履歴</h2>
             <p>サーバーに追加された新機能やバランス調整の履歴です。</p>
 
+            <!-- 最新のアップデート -->
             <div class="update-box">
-                <div class="update-date">大型アップデート (v1.5) - 最新</div>
+                <div class="update-date">大型アップデート (v2.0) - 最新</div>
                 <ul>
-                    <li><span class="update-category badge-new">新ボス</span> <strong>第4層ボス「鉱石王 ゴライアス」を実装！</strong><br>
-                        超絶タフなアイアンゴーレムが大地を揺らしてプレイヤーを追い詰めます。討伐すると「金剛石の大槌」と「鉱石王の重靴」をドロップ！
+                    <li><span class="update-category badge-new">新システム</span> <strong>ボス戦のシステムを「FF14風アクション」にリワーク！</strong><br>
+                        敵の攻撃間隔が長くなった代わりに、一撃が即死級になりました。攻撃が来る前には床に「赤いマーカー(予兆)」が表示されるので、必ず範囲外に逃げてください！
                     </li>
-                    <li><span class="update-category badge-balance">調整</span> 各固有防具のアイテム説明文（Lore）に、発動するパッシブ効果や「Shift+F」スキルの詳細が明記されるようになり、効果が分かりやすくなりました。</li>
+                    <li><span class="update-category badge-new">新システム</span> <strong>ボスに「ギミック(弱点)」を追加！</strong><br>
+                        ただ殴るだけではボスは倒せません。雪玉をぶつけたり、ツルハシやハサミに持ち替えたりと、ボスの「セリフ」をヒントに弱点を突いて無力化しましょう。
+                    </li>
                 </ul>
             </div>
 
             <div class="update-box">
-                <div class="update-date">大型アップデート (v1.4)</div>
+                <div class="update-date">大型アップデート (v1.4 〜 1.5)</div>
                 <ul>
-                    <li><span class="update-category badge-new">新ボス</span> <strong>第3層ボス「猛毒女王 アラクネ」を実装！</strong><br>
-                        巨大な毒蜘蛛が罠にはめます。討伐で毒属性の「魔弓・サジタリウス」と固有防具「猛毒の脚甲」をドロップします。
+                    <li><span class="update-category badge-new">新ボス</span> 第3層ボス「猛毒女王 アラクネ」と、第4層ボス「鉱石王 ゴライアス」を実装！<br>
+                        「魔弓・サジタリウス」「金剛石の大槌」などの新武器や新防具がドロップします。
                     </li>
                     <li><span class="update-category badge-new">新システム</span> <strong>防具専用スキルを追加！</strong><br>
-                        固有防具を装備した状態で <strong>「スニーク ＋ Fキー」</strong> を押すと、強力なアクティブスキル（マナ消費）が発動するようになりました！
+                        固有防具を装備した状態で <strong>「スニーク ＋ Fキー」</strong> を押すと、強力なアクティブスキルが発動するようになりました！
                     </li>
-                    <li><span class="update-category badge-balance">調整</span> 武器だけでなく、固有防具も <code>/mmoforge</code> で+10まで進化（合成強化）できるようになりました。</li>
-                </ul>
-            </div>
-
-            <div class="update-box">
-                <div class="update-date">大型アップデート (v1.2 〜 v1.3)</div>
-                <ul>
-                    <li><span class="update-category badge-new">新システム</span> <strong>武器の限界突破（鍛冶）システムを追加！</strong><br>
-                        <code>/mmoforge</code> にて、同じ固有武器同士を合成して最大+10まで強化できるようになりました。
-                    </li>
+                    <li><span class="update-category badge-balance">調整</span> 固有防具も <code>/mmoforge</code> で+10まで進化（合成強化）できるようになりました。</li>
                 </ul>
             </div>
 
