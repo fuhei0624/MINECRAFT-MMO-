@@ -25,8 +25,15 @@
         header {
             background-color: var(--primary);
             color: white;
-            padding: 20px 0;
+            padding: 25px 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #2c3e50, #8e44ad);
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         .container {
             max-width: 1000px;
@@ -42,84 +49,154 @@
         .tab-button {
             background-color: #bdc3c7;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             font-size: 16px;
             cursor: pointer;
             margin: 5px;
-            border-radius: 5px 5px 0 0;
+            border-radius: 8px 8px 0 0;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            color: #2c3e50;
+        }
+        .tab-button:hover {
+            background-color: #95a5a6;
+            color: white;
         }
         .tab-button.active {
             background-color: var(--accent);
             color: white;
+            box-shadow: 0 -3px 5px rgba(0,0,0,0.1);
         }
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s;
+            animation: fadeIn 0.4s ease-in-out;
         }
         .tab-content.active {
             display: block;
         }
         .card {
             background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--accent);
         }
         .card h2 {
             margin-top: 0;
             color: var(--primary);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 5px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            font-size: 1.5em;
         }
         .command-group {
-            margin-top: 15px;
-            background-color: #f1f8ff;
-            padding: 15px;
-            border-radius: 5px;
-            border-left: 4px solid var(--accent);
+            margin-top: 20px;
+            background-color: #f8faff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
         }
         .command-group h3 {
             margin-top: 0;
             color: var(--secondary);
+            font-size: 1.2em;
         }
         .command {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
+            border: 1px solid #e1e8ed;
             border-left: 4px solid var(--secondary);
-            padding: 10px;
-            margin: 8px 0;
+            padding: 12px;
+            margin: 10px 0;
             font-family: 'Consolas', monospace;
-            font-size: 14px;
+            font-size: 15px;
+            border-radius: 4px;
         }
         .command span {
             color: #e74c3c;
             font-weight: bold;
         }
         .highlight {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 10px;
-            margin: 8px 0;
+            background-color: #f9ebff;
+            border-left: 5px solid #9b59b6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
         }
+        
+        /* ✨ QuickShop 特別スタイル ✨ */
+        .shop-guide {
+            background: linear-gradient(to right, #ffffff, #f0fbff);
+            border: 2px solid #f1c40f;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        .shop-guide h3 {
+            color: #d35400;
+            text-align: center;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+        }
+        .shop-guide p {
+            text-align: center;
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        .step-box {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            background-color: #fff;
+            padding: 15px 20px;
+            border-radius: 50px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #f1c40f;
+            transition: transform 0.2s;
+        }
+        .step-box:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(241, 196, 15, 0.2);
+        }
+        .step-num {
+            background-color: #f1c40f;
+            color: white;
+            font-weight: bold;
+            font-size: 1.4em;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .step-text {
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+
         /* アップデート履歴用のスタイル */
         .update-box {
             background-color: var(--update-bg);
-            border-left: 4px solid #2ecc71;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
+            border-left: 5px solid #9b59b6;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
         .update-date {
             font-weight: bold;
-            color: #27ae60;
-            font-size: 1.1em;
-            margin-bottom: 10px;
+            color: #8e44ad;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #d1d8e0;
+            padding-bottom: 5px;
         }
         .update-category {
             display: inline-block;
-            padding: 2px 8px;
+            padding: 3px 10px;
             border-radius: 12px;
             font-size: 12px;
             font-weight: bold;
@@ -134,8 +211,8 @@
             padding-left: 20px;
         }
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -148,9 +225,10 @@
 
 <div class="container">
     <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'player')">プレイヤー向け</button>
-        <button class="tab-button" onclick="openTab(event, 'admin')">運営・管理者向け</button>
-        <button class="tab-button" onclick="openTab(event, 'updates')">アップデート履歴</button>
+        <button class="tab-button active" onclick="openTab(event, 'player')">🎮 プレイヤー向け</button>
+        <button class="tab-button" onclick="openTab(event, 'economy')">💰 経済・お店の作り方</button>
+        <button class="tab-button" onclick="openTab(event, 'admin')">🛡️ 運営・管理者</button>
+        <button class="tab-button" onclick="openTab(event, 'updates')">📝 アプデ履歴</button>
     </div>
 
     <!-- ================= プレイヤー向けコンテンツ ================= -->
@@ -160,7 +238,7 @@
             <p>マイクラでの生活や探索を快適にするための必須コマンド群です。</p>
             <div class="command"><span>/sethome &lt;名前&gt;</span> - 現在の場所を自分の「ホーム」として登録します。(最大3個まで登録可能！)</div>
             <div class="command"><span>/home &lt;名前&gt;</span> - 登録したホームへテレポートします。</div>
-            <div class="highlight">
+            <div class="highlight" style="background-color: #fef9e7; border-left-color: #f39c12;">
                 <strong>💡 ホームの削除:</strong><br>
                 <div class="command" style="border:none; margin:5px 0 0 0; padding:0; background:transparent;"><span>/delhome &lt;名前&gt;</span> - 不要になったホームを削除します。(/remhome でも可)</div>
             </div>
@@ -171,8 +249,8 @@
         </div>
 
         <div class="card">
-            <h2>⚔️ 装備とカスタマイズ (進化・防具)</h2>
-            <p>固有武器のスキルシステムや、新登場の防具・強化(限界突破)についてです。</p>
+            <h2>⚔️ 装備とカスタマイズ (進化・防具スキル)</h2>
+            <p>ボスからドロップする固有装備のシステムや強化についてです。</p>
             
             <div class="command-group">
                 <h3>自由にスキルを組み替えよう！</h3>
@@ -181,16 +259,21 @@
                 ボスを討伐して獲得した <strong>SP(スキルポイント)</strong> を使って新しいスキルを解放し、全8枠(RRR〜LLL)のコンボに好きなスキルをセットしましょう。</p>
             </div>
 
-            <div class="command-group">
-                <h3>【新機能】武器の限界突破 (合成強化)</h3>
-                <div class="command"><span>/mmoforge</span> - 武器の強化(合成)画面を開きます。</div>
-                <p>「ベースとなる固有武器」と「素材にする同じ固有武器」を合成することで、武器を <strong>最大+10</strong> まで強化できます！<br>
-                強化値が上がるごとに、武器のスキルダメージや効果量がアップ！（+10で性能が2倍になります）</p>
+            <div class="highlight">
+                <h3 style="margin-top:0; color:#8e44ad;">【NEW!】防具専用スキル (Shift + F)</h3>
+                <p>各ボスからドロップする「固有防具」を装備した状態で、<strong>スニーク(しゃがみ)しながら Fキー(オフハンド切り替えキー) </strong>を押すと、防具に秘められた専用スキルが発動します！</p>
+                <ul>
+                    <li><strong>炎魔神の兜:</strong> 周囲の敵を炎上させ吹き飛ばす！</li>
+                    <li><strong>海神の胸当て:</strong> 自身と周囲の味方を回復し、状態異常を解除！</li>
+                    <li><strong>猛毒の脚甲:</strong> 周囲の敵をクモの糸で拘束し、猛毒を与える！</li>
+                </ul>
             </div>
 
             <div class="command-group">
-                <h3>【新機能】固有防具のパッシブ効果</h3>
-                <p>新しく追加されたボスモチーフの防具（炎魔神の兜など）を装備すると、持っているだけで<strong>「最大体力増加」や「水中の移動速度アップ」</strong>などの強力なパッシブ(常時発動)効果を得られます。</p>
+                <h3>装備の限界突破 (合成強化)</h3>
+                <div class="command"><span>/mmoforge</span> - 装備の強化(合成)画面を開きます。</div>
+                <p>同じ固有武器や固有防具同士を合成することで、装備を <strong>最大+10</strong> まで強化できます！<br>
+                強化値が上がるごとに、武器の攻撃力や防具の防御力がアップし、さらに<strong>スキル発動時の消費マナが減り、威力が上がります！</strong>（+10で威力2倍＆消費マナ半減）</p>
             </div>
         </div>
 
@@ -203,24 +286,63 @@
             <div class="command"><span>/mmotitle list</span> - 自分のボス討伐数や、獲得した「称号」を確認します。</div>
             <div class="command"><span>/mmotitle set &lt;称号名&gt;</span> - 獲得した称号をセットします。チャットやTABリストに堂々と表示されます！</div>
         </div>
+    </div>
+
+    <!-- ================= 経済・お店コンテンツ ================= -->
+    <div id="economy" class="tab-content">
+        <div class="card">
+            <h2>💎 サーバー公式の取引所</h2>
+            <p>サーバー内でのお金の稼ぎ方と、公式アイテムの売買システムです。</p>
+
+            <div class="command-group">
+                <h3>ボスの特別報酬と素材買取所</h3>
+                <div class="command"><span>/mmosell</span> - 【素材一括買取所】ボスからドロップした特別な素材や、集めた通常素材(ゾンビ肉、鉱石など)を一括で買い取ってくれます。ここで資金を稼ぎましょう！</div>
+                <div class="command"><span>/mmoshop</span> - 【闇の行商人】武器ガチャや修繕のエンチャント本、レアアイテム（ビーコン等）が当たるかもしれない特別なパックを購入できます。</div>
+            </div>
+
+            <div class="command"><span>/jobs browse</span> - 職業（木こり、採掘者など）の一覧を開き、就職してお金を稼ぎます。</div>
+            <div class="command"><span>/bal</span> または <span>/money</span> - 現在の自分の所持金を確認します。</div>
+        </div>
 
         <div class="card">
-            <h2>💰 経済とお店 (公式ショップ＆オークション)</h2>
-            <p>サーバー内でのお金の稼ぎ方と、アイテムの売買システムです。</p>
-            <div class="command-group">
-                <h3>公式ショップ＆買取所 (超パワーアップ！)</h3>
-                <div class="command"><span>/mmosell</span> - 【素材・鉱石買取所】ボス素材だけでなく、<strong>ゾンビ肉や火薬、金、ダイヤ</strong>などの通常素材も一括で売却できるようになりました！まずはここで資金を稼ごう！</div>
-                <div class="command"><span>/mmoshop</span> - 【闇の行商人】パックガチャや便利アイテムを購入できます。
-                    <ul style="margin-top: 5px;">
-                        <li><strong>資材パックガチャの大当たり:</strong> 建材パックからは「ビーコン」や「スポナー」、鉱夫パックからは「古代の残骸」等の超レアアイテムが出るかも…！？</li>
-                        <li><strong>便利アイテム販売:</strong> 喉から手が出るほど欲しい「修繕のエンチャント本」なども直接買えるようになりました。</li>
-                    </ul>
+            <h2>✨ 光るアイテムが浮かぶ！自分のお店（QuickShop）</h2>
+            <p>不要なアイテムを他のプレイヤーに売ったり、逆に買い取ったりできるチェストショップの作り方です。お店を作ると、<strong>チェストの上にアイテムがプカプカ浮かんで光る</strong>のでとってもオシャレです！</p>
+            
+            <div class="shop-guide">
+                <h3>🛒 アイテムを「売る」お店の作り方</h3>
+                <p>たったの4ステップで、あなただけの光るお店が完成します！</p>
+                
+                <div class="step-box">
+                    <div class="step-num">1</div>
+                    <div class="step-text">地面に <strong>チェスト</strong> を置きます。</div>
+                </div>
+                
+                <div class="step-box">
+                    <div class="step-num">2</div>
+                    <div class="step-text">売りたいアイテム（例: ダイヤモンド）を <strong>手に持ちます</strong>。</div>
+                </div>
+                
+                <div class="step-box">
+                    <div class="step-num">3</div>
+                    <div class="step-text">アイテムを持ったまま、設置したチェストを <strong>左クリック</strong> します。<br>
+                    <span style="font-size: 0.85em; color: #95a5a6;">（※チャット欄に「いくらで売りますか？」というメッセージが出ます）</span></div>
+                </div>
+                
+                <div class="step-box">
+                    <div class="step-num">4</div>
+                    <div class="step-text">チャット入力欄を開き、<strong>値段（数字だけ）</strong> を入力してEnterを押します。（例: <code>500</code>）</div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <strong>🎉 お店が完成！アイテムがチェストの上に浮かび上がります！ 🎉</strong><br>
+                    <span style="font-size: 0.9em; color: #7f8c8d;">最後に、売りたいアイテムをチェストの中に補充しておきましょう。</span>
                 </div>
             </div>
 
             <div class="command-group">
-                <h3>プレイヤー間の取引</h3>
-                <div class="command"><span>/ah</span> - オークションハウスを開きます。プレイヤー間でアイテムを出品・購入できます。</div>
+                <h3>オークションハウス（AH）</h3>
+                <p>チェストを置かずに、メニュー画面越しに全プレイヤーに向けて出品する方法です。</p>
+                <div class="command"><span>/ah</span> - オークションハウスを開き、他の人が出品しているアイテムを買えます。</div>
                 <div class="command"><span>/ah sell &lt;価格&gt;</span> - 手に持っているアイテムをオークションに出品します。</div>
             </div>
         </div>
@@ -255,36 +377,36 @@
 
             <!-- 最新のアップデート -->
             <div class="update-box">
-                <div class="update-date">大型アップデート (v1.2) - 最新</div>
+                <div class="update-date">大型アップデート (v1.4) - 最新</div>
+                <ul>
+                    <li><span class="update-category badge-new">新ボス</span> <strong>第3層ボス「猛毒女王 アラクネ」を実装！</strong><br>
+                        巨大な毒蜘蛛がプレイヤーを罠にはめます。討伐すると、毒属性のスキルを持った「魔弓・サジタリウス」と、新たな固有防具「猛毒の脚甲」をドロップします。
+                    </li>
+                    <li><span class="update-category badge-new">新システム</span> <strong>防具専用スキルを追加！</strong><br>
+                        固有防具を装備した状態で <strong>「スニーク ＋ Fキー」</strong> を押すと、各防具に秘められた強力なアクティブスキル（マナ消費）が発動するようになりました！
+                    </li>
+                    <li><span class="update-category badge-balance">調整</span> 武器だけでなく、固有防具も <code>/mmoforge</code> で+10まで進化（合成強化）できるようになりました。防具の防御力やスキルの威力が上がります。</li>
+                    <li><span class="update-category badge-fix">削除</span> 世界観調整のため、全アイテムショップ（EconomyShopGUI）を削除し、従来の買取＆行商人のみに戻しました。プレイヤー間での取引（QuickShop等）をご活用ください。</li>
+                </ul>
+            </div>
+
+            <div class="update-box">
+                <div class="update-date">大型アップデート (v1.2 〜 v1.3)</div>
                 <ul>
                     <li><span class="update-category badge-new">新システム</span> <strong>武器の限界突破（鍛冶）システムを追加！</strong><br>
                         <code>/mmoforge</code> にて、同じ固有武器同士を合成して最大+10まで強化できるようになりました。
                     </li>
-                    <li><span class="update-category badge-new">新装備</span> <strong>固有防具を追加！</strong><br>
-                        ボスをモチーフにした特別な防具が登場。装備するだけで強力なパッシブ効果（体力増加や水中の移動速度アップなど）が発動します。
-                    </li>
                     <li><span class="update-category badge-balance">調整</span> <strong>ショップ・買取のラインナップを大幅改善</strong><br>
-                        <code>/mmosell</code> でゾンビ肉やダイヤなどの通常アイテムが売れるようになりました。<br>
                         <code>/mmoshop</code> のパックガチャから、低確率でビーコンや古代の残骸などの大当たりが出るようになりました。さらに「修繕のエンチャント本」の直売りを開始しました。
                     </li>
-                    <li><span class="update-category badge-fix">修正</span> スキルカスタマイズ画面（<code>/mmoskill</code>）の表示バグを修正しました。</li>
                 </ul>
             </div>
 
-            <!-- 過去のアップデート (テンプレートとして置いておきます) -->
             <div class="update-box">
                 <div class="update-date">アップデート (v1.1)</div>
                 <ul>
                     <li><span class="update-category badge-new">新システム</span> 武器のスキルを自由に付け替えられる <code>/mmoskill</code> を実装しました。</li>
                     <li><span class="update-category badge-new">新ボス</span> 第2層ボス「海神 リヴァイアサン」と新武器を実装しました。</li>
-                </ul>
-            </div>
-
-            <div class="update-box">
-                <div class="update-date">サーバーオープン (v1.0)</div>
-                <ul>
-                    <li>サーバーを正式公開しました。</li>
-                    <li>第1層ダンジョンとボス「炎魔神 イフリート」を実装しました。</li>
                 </ul>
             </div>
 
