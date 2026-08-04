@@ -13,6 +13,8 @@
             --card-bg: #ffffff;
             --text: #333333;
             --update-bg: #f8f9fa;
+            --danger: #e74c3c;
+            --success: #2ecc71;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,15 +27,19 @@
         header {
             background-color: var(--primary);
             color: white;
-            padding: 25px 0;
+            padding: 30px 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            background: linear-gradient(135deg, #2c3e50, #e74c3c);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #2c3e50, #8e44ad);
         }
         header h1 {
             margin: 0 0 10px 0;
-            font-size: 2.2em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
         }
         .container {
             max-width: 1000px;
@@ -87,7 +93,7 @@
             color: var(--primary);
             border-bottom: 2px solid #ecf0f1;
             padding-bottom: 10px;
-            font-size: 1.5em;
+            font-size: 1.6em;
         }
         .command-group {
             margin-top: 20px;
@@ -112,7 +118,7 @@
             border-radius: 4px;
         }
         .command span {
-            color: #e74c3c;
+            color: var(--danger);
             font-weight: bold;
         }
         .highlight {
@@ -123,8 +129,8 @@
             border-radius: 4px;
         }
         .boss-guide {
-            background: linear-gradient(to right, #ffffff, #ffeee6);
-            border: 2px solid #e74c3c;
+            background: linear-gradient(to right, #ffffff, #fff5f5);
+            border: 2px solid var(--danger);
             border-radius: 12px;
             padding: 20px;
             margin-top: 20px;
@@ -132,11 +138,24 @@
         .boss-guide h3 {
             color: #c0392b;
             margin-top: 0;
+            font-size: 1.4em;
+        }
+        .boss-guide ul li {
+            margin-bottom: 15px;
+        }
+        .hint-box {
+            background-color: #fff;
+            padding: 12px;
+            margin-top: 5px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            border-left: 4px solid #f1c40f;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         /* アップデート履歴用のスタイル */
         .update-box {
             background-color: var(--update-bg);
-            border-left: 5px solid #e74c3c;
+            border-left: 5px solid var(--danger);
             padding: 20px;
             margin-bottom: 25px;
             border-radius: 6px;
@@ -152,18 +171,19 @@
         }
         .update-category {
             display: inline-block;
-            padding: 3px 10px;
+            padding: 4px 10px;
             border-radius: 12px;
             font-size: 12px;
             font-weight: bold;
             margin-right: 10px;
             color: white;
         }
-        .badge-new { background-color: #e74c3c; }
-        .badge-fix { background-color: #3498db; }
+        .badge-new { background-color: var(--danger); }
+        .badge-fix { background-color: var(--accent); }
         .badge-balance { background-color: #f39c12; }
+        .badge-system { background-color: #8e44ad; }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -172,13 +192,13 @@
 
 <header>
     <h1>MMO Server 総合取扱説明書</h1>
-    <p>プレイヤー向けガイド ＆ 運営・管理者向けマニュアル</p>
+    <p>全9階層 踏破ガイド ＆ 冒険の極意</p>
 </header>
 
 <div class="container">
     <div class="tabs">
         <button class="tab-button active" onclick="openTab(event, 'player')">🎮 プレイヤー向け</button>
-        <button class="tab-button" onclick="openTab(event, 'economy')">💰 経済・お店の作り方</button>
+        <button class="tab-button" onclick="openTab(event, 'economy')">💰 経済・お店</button>
         <button class="tab-button" onclick="openTab(event, 'admin')">🛡️ 運営・管理者</button>
         <button class="tab-button" onclick="openTab(event, 'updates')">📝 アプデ履歴</button>
     </div>
@@ -188,72 +208,73 @@
         
         <div class="card">
             <h2>🐉 ダンジョンとボス戦の極意</h2>
-            <p>ダンジョンのボス達は非常に強力で、<strong>ごり押し（タコ殴り）では絶対に勝てません。</strong>以下の「ボスの極意」をしっかり読んで挑んでください！</p>
+            <p>第1層〜第9層まで、強大な力を持つボスたちがあなたを待ち受けています。<br>
+            彼らのHPは莫大であり、ただ殴るだけ（ごり押し）では<strong>ダメージが90%カットされてしまい絶対に勝てません。</strong></p>
             
             <div class="boss-guide">
-                <h3>⚠️ ボス戦 2つのルール ⚠️</h3>
+                <h3>⚠️ ボス戦 3つのルール ⚠️</h3>
                 <ul>
-                    <li><strong>① 床の「赤色マーカー(予兆)」からダッシュで逃げろ！</strong><br>
-                        ボスが大技の詠唱を始めると、床に赤色の範囲（AoE）が表示されます。範囲内にいると<b>即死級のダメージ ＋ 絶望的なデバフ</b>を受けます。<br>
-                        ※理不尽な追尾攻撃はありません。マーカーが見えたら<b>横にダッシュ</b>すれば必ず避けられます！
+                    <li><strong>① 第一形態ギミック（HP50%以上）</strong><br>
+                        ボス戦開始直後、ボスは強固な装甲に守られています。<br>
+                        戦闘中にボスが発する<strong>「セリフ」</strong>をよく聞き、特定の行動（アイテムを当てる等）を5回行うことで、装甲が割れて大ダメージを与えられます！
                     </li>
-                    <li style="margin-top: 10px;"><strong>② 敵の「セリフ」に弱点のヒントが隠されている！</strong><br>
-                        「弓が効かない！」「剣の攻撃が通らない！」…そんな時は、敵が喋るセリフをよく聞いてください。弱点を突くとボスの防御力が激減したり、大技をキャンセルすることができます！
-                        <div style="background-color: #fff; padding: 10px; margin-top: 5px; border-radius: 4px; font-size: 0.9em; border-left: 3px solid #f1c40f;">
-                            <strong>🔑 謎解き・ギミック突破に役立つアイテムの例</strong><br>
-                            雪玉 / ハサミ / ツルハシ / スポンジ / スプラッシュ水ポーション / 釣竿 / 牛乳バケツ / 鉄インゴット など
-                        </div>
+                    <li><strong>② 第二形態ギミック（HP50%以下・激怒）</strong><br>
+                        HPが半分を切るとボスは激怒し、<strong>第一形態とは全く違うバリア</strong>を展開します。<br>
+                        この解除方法は、ダンジョン内のどこかにある<strong>『冒険者の手記』</strong>にヒントが書かれています。謎を解き明かしましょう！
+                    </li>
+                    <li><strong>③ ランダム大技ギミック（回避不可の即死攻撃）</strong><br>
+                        戦闘中、ボスは突如として「大技の詠唱」を始めます。周囲に特定のブロックが現れるので、画面の指示に従って<strong>10秒以内</strong>に解除・破壊してください。失敗すればパーティは全滅します。
                     </li>
                 </ul>
-            </div>
-
-            <div class="command-group">
-                <h3>🤝 パーティとマルチプレイの重要性</h3>
-                <div class="highlight" style="background-color: #e8f8f5; border-left-color: #2ecc71;">
-                    <strong>💡 味方への誤爆(フレンドリーファイア)はゼロ！</strong><br>
-                    パーティを組んでいるメンバー同士は、攻撃や広範囲の魔法スキルが一切当たらなくなります！味方を巻き込む心配はないので、安心してド派手な大技を連発してボスを倒しましょう。
+                <div class="hint-box">
+                    <strong>💡 MMOの醍醐味：前の階層の素材がカギを握る！？</strong><br>
+                    あるボスのギミックを解くためのアイテムが、実は<strong>前の階層のボスからドロップする素材</strong>だった…ということがあります。様々な素材を集めておきましょう！
                 </div>
-                <div class="command"><span>/party invite &lt;プレイヤー名&gt;</span> - プレイヤーをパーティに招待します。</div>
-                <div class="command"><span>/party accept</span> - パーティの招待を受け入れます。(パーティでのダンジョン突入に必須)</div>
+            </div>
+
+            <div class="command-group">
+                <h3>🛡️ 必見！ダンジョンオート保険</h3>
+                <div class="highlight" style="background-color: #e8f8f5; border-left-color: #2ecc71;">
+                    <div class="command"><span>/insurance auto</span> - オート保険モードをON/OFFします。</div>
+                    ダンジョンで全ロスを経験したくないなら、絶対にこれを使ってください！<br>
+                    ONにしておけば、死んで保険を消費した直後に<strong>自動で500円支払って再加入</strong>してくれます。買い忘れによるアイテム全ロス事故を完全に防げます！
+                </div>
+            </div>
+
+            <div class="command-group">
+                <h3>🤝 パーティシステム</h3>
+                <div class="command"><span>/party invite &lt;プレイヤー名&gt;</span> - プレイヤーを招待。</div>
+                <div class="command"><span>/party accept</span> - 招待を受け入れる。(ボス部屋侵入に必須)</div>
+                <p>パーティメンバー同士は、攻撃や広範囲の魔法スキルが一切当たらなくなります（フレンドリーファイア無効）。安心してド派手な大技を連発しましょう！</p>
             </div>
         </div>
 
         <div class="card">
-            <h2>🎒 便利機能：ダンジョンポーチ</h2>
-            <div class="command"><span>/mmostash</span> (または /mmopouch) - 専用のダンジョンポーチを開きます。</div>
-            <ul>
-                <li>ボスを討伐した際のドロップ報酬（武器や素材）は、<strong>自動的にこの専用ポーチの中に収納</strong>されます。</li>
-                <li>ポーチは最大54枠！ここから自分のインベントリにアイテムを<strong>取り出すことだけ</strong>ができます。</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2>⚔️ 装備とカスタマイズ (進化・防具スキル)</h2>
+            <h2>⚔️ 装備とスキルカスタマイズ</h2>
             <div class="command-group">
-                <h3>自由にスキルを組み替えよう！</h3>
+                <h3>全12種類のスキルを組み替えよう！</h3>
                 <div class="command"><span>/mmoskill</span> - 武器のスキルカスタマイズ画面を開きます。</div>
-                <p>手に固有武器を持って <code>/mmoskill</code> を実行すると、全12種類のスキル一覧が表示されます。<br>
-                ボスを討伐して獲得した <strong>SP(スキルポイント)</strong> を使って新しいスキルを解放し、全8枠(RRR〜LLL)のコンボに好きなスキルをセットしましょう。</p>
+                <p>各ボスの固有武器には、それぞれ<strong>12種類の魔法スキル</strong>が存在します。<br>
+                ボスを討伐して獲得した <strong>SP(スキルポイント)</strong> を使って新しいスキルを解放し、全8枠(右右右〜左左左)のコンボに好きなスキルをセットしましょう。</p>
             </div>
 
             <div class="highlight">
                 <h3 style="margin-top:0; color:#8e44ad;">防具専用スキル (Shift + F)</h3>
-                <p>固有防具を装備した状態で、<strong>スニーク(しゃがみ)しながら Fキー(オフハンド切り替えキー) </strong>を押すと、防具に秘められた専用スキルが発動します！防具のアイテム説明文（Lore）をチェックしてみましょう！</p>
+                <p>固有防具を装備した状態で、<strong>スニーク(しゃがみ)しながら Fキー(オフハンド切り替えキー) </strong>を押すと、防具に秘められた専用スキル（回復やバリアなど）が発動します！</p>
             </div>
 
             <div class="command-group">
                 <h3>装備の限界突破 (合成強化)</h3>
                 <div class="command"><span>/mmoforge</span> - 装備の強化(合成)画面を開きます。</div>
-                <p>同じ固有武器や固有防具同士を合成することで、装備を <strong>最大+10</strong> まで強化できます！<br>
-                強化値が上がるごとに、武器の攻撃力や防具の防御力がアップし、さらに<strong>スキル発動時の消費マナが減り、威力が上がります！</strong></p>
+                <p>同じ固有武器や固有防具同士を合成することで、装備を <strong>最大+10</strong> まで強化可能。<br>
+                強化値が上がるごとに、基礎ステータスがアップし、<strong>スキル発動時の消費マナが減り、威力が上がります！</strong></p>
             </div>
         </div>
 
         <div class="card">
-            <h2>🏠 拠点・移動コマンド</h2>
-            <div class="command"><span>/sethome &lt;名前&gt;</span> - 現在の場所をホームとして登録します。</div>
-            <div class="command"><span>/home &lt;名前&gt;</span> - 登録したホームへテレポートします。</div>
-            <div class="command"><span>/spawn</span> - サーバーの初期スポーン地点に戻ります。</div>
+            <h2>🎒 ダンジョンポーチ</h2>
+            <div class="command"><span>/mmostash</span> - 専用のダンジョンポーチを開きます。</div>
+            <p>ボスを討伐した際のドロップ報酬は、<strong>自動的にこの専用ポーチ(54枠)の中に収納</strong>されます。インベントリがいっぱいでも安心です。※取り出し専用です。</p>
         </div>
     </div>
 
@@ -275,11 +296,22 @@
     <!-- ================= 運営・管理者向けコンテンツ ================= -->
     <div id="admin" class="tab-content">
         <div class="card">
-            <h2>⚙️ MMOPlugin (ダンジョン設定)</h2>
-            <div class="command"><span>/mmodungeon setgate &lt;階層ID&gt;</span> - 視線先のブロックをダンジョン入場ゲートに設定。</div>
-            <div class="command"><span>/mmodungeon setbossroom &lt;階層ID&gt;</span> - 現在位置をボス部屋のTP先に設定。</div>
-            <div class="command"><span>/mmodungeon setlobby &lt;階層ID&gt;</span> - 現在位置をボス討伐後の帰還用ロビーに設定。</div>
-            <div class="command"><span>/mmoitem &lt;装備ID&gt;</span> - 固有武器や防具を取得します。</div>
+            <h2>⚙️ 運営向けシステム・建築コマンド</h2>
+            
+            <div class="command-group">
+                <h3>ダンジョン設営</h3>
+                <div class="command"><span>/mmodungeon setgate &lt;階層1~9&gt;</span> - 視線先のブロックを入場ゲートに設定。</div>
+                <div class="command"><span>/mmodungeon setbossroom &lt;階層1~9&gt;</span> - 現在位置をボス部屋のTP先に設定。</div>
+                <div class="command"><span>/mmodungeon setlobby &lt;階層1~9&gt;</span> - 現在位置をボス討伐後の帰還用ロビーに設定。</div>
+                <div class="command"><span>/mmodungeon book &lt;階層1~9&gt;</span> - <strong>[重要]</strong> その階層の「ギミックのヒントが書かれた本」を取得します。ボス部屋の前に「書見台」を置いて設置してください。</div>
+            </div>
+
+            <div class="command-group">
+                <h3>テスト用コマンド</h3>
+                <div class="command"><span>/mmoadmin maxgear</span> - 管理者用。全エンチャントレベル255の最強ネザライト装備一式を取得します。ボス戦のテスト等に使用してください。</div>
+                <div class="command"><span>/mmoitem &lt;装備ID&gt;</span> - 各ボスの固有武器や防具を取得します。（例：levatein, garuda_bow）</div>
+                <div class="command"><span>/mmoboss spawn &lt;ボスID&gt;</span> - 視線先にボスを強制召喚します。（例：arachne）</div>
+            </div>
         </div>
     </div>
 
@@ -289,34 +321,39 @@
             <h2>📝 パッチノート ＆ 変更履歴</h2>
 
             <div class="update-box">
-                <div class="update-date">アップデート (v2.3) - 最新</div>
+                <div class="update-date">大型アップデート (v2.4) - 最新</div>
+                <ul>
+                    <li><span class="update-category badge-new">新機能</span> <strong>全9階層のボスと武器が完全実装！</strong><br>
+                        フェンリル、ガルーダ、エニグマ、デュラハン、ユグドラシルの5体のボスを追加しました。これに伴い、全9種の武器とそれぞれ12個（計108個）の魔法スキルが実装されました。
+                    </li>
+                    <li><span class="update-category badge-system">システム</span> <strong>「3段階ギミック」システムの導入！</strong><br>
+                        全ボスに対して「第一形態」「第二形態（激怒）」「大技」の3つのギミックを追加。ボスのセリフやダンジョン内の本からヒントを探し出す謎解き要素が追加されました。
+                    </li>
+                    <li><span class="update-category badge-fix">改善</span> <strong>ダンジョンオート保険の追加！</strong><br>
+                        <code>/insurance auto</code> が実装されました。死亡しても自動で500円を支払い保険に再加入するため、買い忘れによる全ロスの悲劇がなくなります。
+                    </li>
+                    <li><span class="update-category badge-system">超軽量化</span> <strong>サーバー負荷の極限までの削減！</strong><br>
+                        ボスの索敵ループやパッシブスキル判定の無駄を徹底的に排除。何十人が一斉にスキルを乱れ撃ちしてもサーバーが重くならない「超軽量化」を実現しました。
+                    </li>
+                </ul>
+            </div>
+
+            <div class="update-box">
+                <div class="update-date">アップデート (v2.3)</div>
                 <ul>
                     <li><span class="update-category badge-balance">調整</span> <strong>ダンジョンの「フラット化（横並び化）」を実施！</strong><br>
-                        1層〜4層という強さの階段をなくし、<strong>全ボスが同じHP・攻撃力・ドロップ率（難易度）</strong>になりました！好きな属性の武器や防具を狙って、好きなボスを周回できます。
+                        1層〜4層という強さの階段をなくし、<strong>全ボスが同じHP・攻撃力・ドロップ率</strong>になりました。好きな属性の武器や防具を狙って、好きなボスを周回できます。
                     </li>
-                    <li><span class="update-category badge-new">新機能</span> <strong>全ボスに「3つのギミック（謎解き）」を追加！</strong><br>
-                        ボスの大技をキャンセルしたり、弱体化させるためのギミックが1体のボスにつき3つずつ用意されました。牛乳、ハサミ、スポンジ、釣竿など…色々なアイテムを駆使して戦いを有利に進めましょう！
-                    </li>
+                    <li><span class="update-category badge-new">新機能</span> 装備強化（Forge）システムを導入。</li>
                 </ul>
             </div>
 
             <div class="update-box">
                 <div class="update-date">アップデート (v2.2)</div>
                 <ul>
-                    <li><span class="update-category badge-balance">調整</span> <strong>ボス戦の超難易度化（ごり押し防止）！</strong><br>
-                        ノックバック耐性を100%にし、ボスの大技ダメージを「即死級＋絶望デバフ付与」に強化しました。
-                    </li>
                     <li><span class="update-category badge-fix">修正</span> <strong>フレンドリーファイアの完全無効化！</strong><br>
                         パーティメンバー同士には、通常攻撃も広範囲の魔法スキルも一切当たらなくなりました。
                     </li>
-                </ul>
-            </div>
-
-            <div class="update-box">
-                <div class="update-date">アップデート (v2.1)</div>
-                <ul>
-                    <li><span class="update-category badge-new">新機能</span> ダンジョンポーチ（/mmostash）を追加！</li>
-                    <li><span class="update-category badge-balance">調整</span> レアドロップに「天井システム（確定ドロップ）」を追加しました。ボスを20体倒すごとに、必ず固有装備がどれか1つドロップします。</li>
                 </ul>
             </div>
         </div>
