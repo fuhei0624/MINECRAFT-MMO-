@@ -16,6 +16,7 @@
             --danger: #e74c3c;
             --success: #2ecc71;
             --highlight: #f39c12;
+            --purple: #8e44ad;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -182,7 +183,7 @@
         .badge-new { background-color: var(--danger); }
         .badge-fix { background-color: var(--accent); }
         .badge-balance { background-color: var(--highlight); }
-        .badge-system { background-color: #8e44ad; }
+        .badge-system { background-color: var(--purple); }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -193,18 +194,18 @@
 
 <header>
     <h1>MMO Server 総合取扱説明書</h1>
-    <p>全9階層 踏破ガイド ＆ 冒険の極意</p>
+    <p>全9階層 踏破ガイド ＆ 冒険と経済の極意</p>
 </header>
 
 <div class="container">
     <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'player')">🎮 プレイヤー向け</button>
-        <button class="tab-button" onclick="openTab(event, 'economy')">💰 経済・お店</button>
+        <button class="tab-button active" onclick="openTab(event, 'player')">🎮 冒険・システム</button>
+        <button class="tab-button" onclick="openTab(event, 'economy')">💰 職業・経済・お店</button>
         <button class="tab-button" onclick="openTab(event, 'admin')">🛡️ 運営・管理者</button>
         <button class="tab-button" onclick="openTab(event, 'updates')">📝 アプデ履歴</button>
     </div>
 
-    <!-- ================= プレイヤー向けコンテンツ ================= -->
+    <!-- ================= 冒険・システム コンテンツ ================= -->
     <div id="player" class="tab-content active">
         
         <div class="card">
@@ -217,7 +218,7 @@
                 <ul>
                     <li><strong>① 第一形態ギミック（HP50%以上）</strong><br>
                         ボス戦開始直後、ボスは強固な装甲に守られています。<br>
-                        戦闘中にボスが発する<strong>「セリフ」</strong>をよく聞き、特定の行動（アイテムを当てる等）を5回行うことで、装甲が割れて大ダメージを与えられます！
+                        戦闘中にボスが発する<strong>「セリフ」</strong>をよく聞き、特定の行動（アイテムを当てる等）を行うことで、装甲が割れて大ダメージを与えられます！
                     </li>
                     <li><strong>② 第二形態ギミック（HP50%以下・激怒）</strong><br>
                         HPが半分を切るとボスは激怒し、<strong>第一形態とは全く違うバリア</strong>を展開します。<br>
@@ -229,17 +230,15 @@
                 </ul>
                 <div class="hint-box">
                     <strong>💡 MMOの醍醐味：前の階層の素材がカギを握る！？</strong><br>
-                    あるボスのギミックを解くためのアイテムが、実は<strong>前の階層のボスからドロップする素材</strong>だった…ということがあります。様々な素材を集めておきましょう！
+                    あるボスのギミックを解くためのアイテムが、実は<strong>前の階層のボスからドロップする素材</strong>だった…ということがあります。様々な素材を集めておきましょう！どうしても手に入らない場合は、ショップ(<code>/mmoshop</code>)のギミック攻略パックを活用してください。
                 </div>
             </div>
 
-            <div class="command-group">
-                <h3>🛡️ 必見！ダンジョンオート保険</h3>
-                <div class="highlight" style="background-color: #e8f8f5; border-left-color: #2ecc71;">
-                    <div class="command"><span>/insurance auto</span> - オート保険モードをON/OFFします。</div>
-                    ダンジョンで全ロスを経験したくないなら、絶対にこれを使ってください！<br>
-                    ONにしておけば、死んで保険を消費した直後に<strong>自動で500円支払って再加入</strong>してくれます。買い忘れによるアイテム全ロス事故を完全に防げます！
-                </div>
+            <div class="command-group" style="border-left-color: var(--success);">
+                <h3 style="color: var(--success);">🛡️ 必見！ダンジョンオート保険</h3>
+                <div class="command"><span>/insurance auto</span> - オート保険モードをON/OFFします。</div>
+                <p>ダンジョンで全ロスを経験したくないなら、絶対にこれを使ってください！<br>
+                ONにしておけば、死んで保険を消費した直後に<strong>自動で500円支払って再加入</strong>してくれます。買い忘れによるアイテム全ロス事故を完全に防げます！</p>
             </div>
 
             <div class="command-group">
@@ -251,67 +250,96 @@
         </div>
 
         <div class="card">
-            <h2>⚔️ 装備と基礎スキル (AuraSkills)</h2>
-            <div class="command-group">
-                <h3>基礎ステータスの確認と強化</h3>
-                <div class="command"><span>/skills</span> - AuraSkillsのメインメニューを開きます。</div>
-                <p>採掘や戦闘など、行動するたびに各スキルの経験値が貯まりレベルアップします。<br>
+            <h2>⚔️ ステータスとスキルカスタマイズ</h2>
+            
+            <div class="command-group" style="border-left-color: var(--purple);">
+                <h3 style="color: var(--purple);">💪 基礎ステータス (AuraSkills)</h3>
+                <div class="command"><span>/skills</span> - メインメニューを開き、自分のレベルや能力を確認します。</div>
+                <p>採掘、農業、戦闘など、行動するたびに各スキルの経験値が貯まりレベルアップします。<br>
                 レベルが上がると「筋力（攻撃力）」「体力（HP上限）」「知力（マナ上限）」などの基礎ステータスが上昇し、キャラクター自体が強くなっていきます。</p>
             </div>
 
             <div class="command-group">
-                <h3>全12種類の魔法スキルを組み替えよう！</h3>
+                <h3>🪄 カスタム武器のスキル編成</h3>
                 <div class="command"><span>/mmoskill</span> - 武器のスキルカスタマイズ画面を開きます。</div>
                 <p>各ボスの固有武器には、それぞれ<strong>12種類の魔法スキル</strong>が存在します。<br>
                 ボスを討伐して獲得した <strong>SP(スキルポイント)</strong> を使って新しいスキルを解放し、全8枠(右右右〜左左左)のコンボに好きなスキルをセットしましょう。</p>
-            </div>
-
-            <div class="highlight">
-                <h3 style="margin-top:0; color:#c0392b;">🔥 戦術の要：クールダウンとマナ管理</h3>
-                <p>強力なスキル（究極技など）には <strong>3秒〜15秒のクールダウン（再使用待機時間）</strong> が設定されています。その代わり、<strong>すべてのスキルの消費マナが大幅に軽減</strong>されました！<br>
-                「強力な大技」を撃ったあとは、クールダウンが短い「基本技」で繋ぐなど、スキルのローテーションを工夫して戦うのがプロの冒険者です。</p>
-            </div>
-
-            <div class="command-group">
-                <h3>防具専用スキル (Shift + F)</h3>
-                <p>固有防具を装備した状態で、<strong>スニーク(しゃがみ)しながら Fキー(オフハンド切り替えキー) </strong>を押すと、防具に秘められた専用スキル（回復やバリアなど）が発動します！</p>
+                <div class="hint-box">
+                    <strong>🔥 戦術の要：クールダウンとマナ管理</strong><br>
+                    すべてのスキルの消費マナは低めですが、代わりに強力なスキルには <strong>3秒〜15秒のクールダウン</strong> があります。大技と基本技をバランス良くセットするのがプロの冒険者です。
+                </div>
             </div>
 
             <div class="command-group">
-                <h3>装備の限界突破 (合成強化)</h3>
+                <h3>🛡️ 防具専用スキル (トグル発動)</h3>
+                <p>固有防具を装備した状態で <strong>「スニーク(しゃがみ) ＋ Fキー」</strong> を押すと、画面下部のサブタイトルで発動する部位（頭・胸・脚・足）を切り替えることができます。<br>
+                使いたい部位が選択された状態で、<strong>普通に「Fキー」を押す</strong>と、防具に秘められた専用スキル（回復やバリアなど）が発動します！</p>
+            </div>
+
+            <div class="command-group">
+                <h3>🔨 装備の限界突破 (合成強化)</h3>
                 <div class="command"><span>/mmoforge</span> - 装備の強化(合成)画面を開きます。</div>
                 <p>同じ固有武器や固有防具同士を合成することで、装備を <strong>最大+10</strong> まで強化可能。<br>
-                強化値が上がるごとに、基礎ステータスがアップし、<strong>スキル発動時の消費マナが減り、威力が上がります！</strong></p>
+                1層の武器を+10まで強化すれば、次の層の装備にも引けを取らない強さになります！</p>
             </div>
         </div>
 
         <div class="card">
-            <h2>🎒 ダンジョンポーチ</h2>
-            <div class="command"><span>/mmostash</span> - 専用のダンジョンポーチを開きます。</div>
-            <p>ボスを討伐した際のドロップ報酬は、<strong>自動的にこの専用ポーチ(54枠)の中に収納</strong>されます。インベントリがいっぱいでも安心です。※取り出し専用です。</p>
+            <h2>🏠 拠点・移動・インベントリ</h2>
+            <div class="command-group">
+                <h3>基本コマンド (EssentialsX)</h3>
+                <div class="command"><span>/spawn</span> - サーバーの初期スポーン地点に戻ります。</div>
+                <div class="command"><span>/sethome &lt;名前&gt;</span> - 現在の場所をホームとして登録します。</div>
+                <div class="command"><span>/home &lt;名前&gt;</span> - 登録したホームへテレポートします。</div>
+            </div>
+            
+            <div class="command-group" style="border-left-color: var(--highlight);">
+                <h3 style="color: var(--highlight);">🎒 ダンジョンポーチ</h3>
+                <div class="command"><span>/mmostash</span> - 専用のダンジョンポーチを開きます。</div>
+                <p>ボスを討伐した際のドロップ報酬は、<strong>自動的にこの専用ポーチ(54枠)の中に収納</strong>されます。インベントリがいっぱいでも安心です。※自分のインベントリへの取り出し専用です。</p>
+            </div>
         </div>
     </div>
 
-    <!-- ================= 経済・お店コンテンツ ================= -->
+    <!-- ================= 経済・職業・お店コンテンツ ================= -->
     <div id="economy" class="tab-content">
         <div class="card">
-            <h2>💎 サーバー公式の取引所</h2>
-            <p>サーバー内でのお金の稼ぎ方と、公式アイテムの売買システムです。</p>
+            <h2>💼 職業に就いてお金を稼ごう (Jobs)</h2>
+            <p>このサーバーでは、特定の行動をすることでお金（円）を稼ぐことができます。</p>
 
             <div class="command-group">
-                <h3>ボスの特別報酬と素材買取所</h3>
-                <div class="command"><span>/mmosell</span> - 【素材一括買取所】ボスからドロップした特別な素材や、集めた通常素材(ゾンビ肉、鉱石など)を一括で買い取ってくれます。</div>
-                <div class="command"><span>/mmoshop</span> - 【闇の行商人】武器ガチャや修繕のエンチャント本、レアアイテム（ビーコン等）が当たるかもしれない特別なパックを購入できます。</div>
+                <div class="command"><span>/jobs browse</span> - 職業の一覧を表示し、好きな職業に就くことができます。</div>
+                <div class="command"><span>/jobs leave &lt;職業名&gt;</span> - 現在の職業を辞めます。</div>
+                <p><strong>【職業の例】</strong><br>
+                ⛏️ <strong>Miner（鉱夫）:</strong> 石や鉱石を掘るとお金がもらえる。<br>
+                🪓 <strong>Woodcutter（木こり）:</strong> 木を切るとお金がもらえる。<br>
+                ⚔️ <strong>Hunter（狩人）:</strong> モブを倒すとお金がもらえる。<br>
+                などなど！プレイスタイルに合わせて選びましょう。</p>
             </div>
-            <div class="command"><span>/bal</span> または <span>/money</span> - 現在の自分の所持金を確認します。</div>
+            <div class="command"><span>/bal</span> または <span>/money</span> - 現在の自分の所持金を確認します。（右側の画面にも常にリアルタイムで表示されます）</div>
         </div>
 
         <div class="card">
-            <h2>🏪 プレイヤーのお店（チェストショップ）の作り方</h2>
-            <p>「QuickShop」プラグインを使い、自分のアイテムを他のプレイヤーに売ったり、買い取ったりするお店を作ることができます。</p>
-            
+            <h2>💎 サーバー公式の取引所</h2>
             <div class="command-group">
-                <h3>お店の作り方手順</h3>
+                <h3>ボスの特別報酬と素材買取所</h3>
+                <div class="command"><span>/mmosell</span> - 【素材一括買取所】ボスからドロップした特別な素材や、集めた通常素材(ゾンビ肉、鉱石など)を一括で買い取ってくれます。</div>
+                <div class="command"><span>/mmoshop</span> - 【闇の行商人】武器ガチャやレアアイテムに加え、<strong>ギミック解除用のアイテム詰め合わせパック</strong>もここで購入できます。</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🏪 プレイヤー間取引 (お店 ＆ オークション)</h2>
+            <p>プレイヤー同士でアイテムを売買する方法は2種類あります。</p>
+
+            <div class="command-group" style="border-left-color: var(--success);">
+                <h3 style="color: var(--success);">🛒 オークションハウス (AuctionHouse)</h3>
+                <div class="command"><span>/ah</span> - 全プレイヤーが出品しているアイテムの一覧（オークション）を開きます。どこからでも買えます。</div>
+                <div class="command"><span>/ah sell &lt;値段&gt;</span> - 手に持っているアイテムをオークションに出品します。</div>
+            </div>
+
+            <div class="command-group">
+                <h3>🏪 チェストショップの作り方 (QuickShop)</h3>
                 <ol>
                     <li>チェストを地面に置きます。</li>
                     <li>売りたい（または買い取りたい）アイテムを<strong>手に持ちます。</strong></li>
@@ -319,13 +347,13 @@
                     <li>チャット欄に「いくらで取引しますか？」と聞かれるので、<strong>値段（数字のみ）をチャットに入力してエンター</strong>を押します。</li>
                     <li>これでお店（販売モード）が完成です！チェストの中に商品を補充しておきましょう。</li>
                 </ol>
-            </div>
-            <div class="command-group">
-                <h3>お店の設定変更コマンド（看板を見ながら入力）</h3>
-                <div class="command"><span>/qs buy</span> - お店を「買取モード（他のプレイヤーからアイテムを買い取る）」に変更します。</div>
-                <div class="command"><span>/qs sell</span> - お店を「販売モード（アイテムを売る）」に戻します。</div>
-                <div class="command"><span>/qs price &lt;新しい値段&gt;</span> - お店の値段を変更します。</div>
-                <div class="command"><span>/qs remove</span> - お店を撤去します。</div>
+                <div class="hint-box">
+                    <strong>お店の設定変更コマンド（看板を見ながら入力）</strong><br>
+                    <code>/qs buy</code> - お店を「買取モード」に変更する。<br>
+                    <code>/qs sell</code> - お店を「販売モード」に戻す。<br>
+                    <code>/qs price &lt;新しい値段&gt;</code> - 値段を変更する。<br>
+                    <code>/qs remove</code> - お店を撤去する。
+                </div>
             </div>
         </div>
     </div>
@@ -340,11 +368,12 @@
                 <div class="command"><span>/mmodungeon setgate &lt;階層1~9&gt;</span> - 視線先のブロックを入場ゲートに設定。</div>
                 <div class="command"><span>/mmodungeon setbossroom &lt;階層1~9&gt;</span> - 現在位置をボス部屋のTP先に設定。</div>
                 <div class="command"><span>/mmodungeon setlobby &lt;階層1~9&gt;</span> - 現在位置をボス討伐後の帰還用ロビーに設定。</div>
-                <div class="command"><span>/mmodungeon book &lt;階層1~9&gt;</span> - <strong>[重要]</strong> その階層の「ギミックのヒントが書かれた本」を取得します。ボス部屋の前に「書見台」を置いて設置してください。</div>
+                <div class="command"><span>/mmodungeon book &lt;階層1~9&gt;</span> - <strong>[重要]</strong> その階層の「ギミックのヒントが書かれた本」を取得します。ボス部屋の前に「書見台」を置いて設置してください。（このコマンドで出した本は、一般プレイヤーが持ち去ることができないよう保護されます）</div>
             </div>
 
             <div class="command-group">
-                <h3>👀 観戦モード（Spectate）</h3>
+                <h3>👀 観戦とホログラム</h3>
+                <div class="command"><span>/mmoadmin holo &lt;階層1~9&gt;</span> - DecentHolograms APIを用いて、現在位置に指定階層のヒントが書かれた美麗なホログラムを自動生成します。</div>
                 <div class="command"><span>/mmodungeon spectate &lt;階層1~9&gt;</span> - 指定した階層のボス部屋に「スペクテイターモード（透明・無敵状態）」でテレポートし、他のプレイヤーの戦闘を観戦できます。</div>
                 <div class="command"><span>/mmodungeon return</span> - 観戦を終了し、観戦コマンドを打った「元の場所」「元のゲームモード」へ安全に帰還します。</div>
             </div>
@@ -364,13 +393,38 @@
             <h2>📝 パッチノート ＆ 変更履歴</h2>
 
             <div class="update-box">
-                <div class="update-date">アップデート (v2.5) - 最新</div>
+                <div class="update-date">アップデート (v2.7) - 最新</div>
+                <ul>
+                    <li><span class="update-category badge-system">演出強化</span> <strong>ボスの演出を大強化！デュラハンが骨馬に騎乗！</strong><br>
+                        8層のデュラハンが骨馬（スケルトンホース）に乗って突進してくるようになりました。9層ユグドラシルの姿を不気味な「クリーキング」に変更。さらに、全ボスの足元や全身に強力な魔法陣やオーラが常時展開されるようになりました！
+                    </li>
+                    <li><span class="update-category badge-fix">UI改善</span> <strong>右側の画面（スコアボード）の完全改修！</strong><br>
+                        右側の画面が二重に表示されたり、チラついたりするバグを完全に修正しました。赤い数字も消え、Jobsの所持金がリアルタイム（瞬時）に反映・更新されるようになりました。
+                    </li>
+                    <li><span class="update-category badge-balance">バランス調整</span> <strong>階層インフレシステムの導入！</strong><br>
+                        1層から9層に向けて、ボスのHP・攻撃力・固有武器の威力・防具の硬さが「階段状」に強くなるように再設計しました。前の層の武器を限界突破（+10）させることで次の層に進める、よりハクスラらしい難易度曲線になっています。
+                    </li>
+                </ul>
+            </div>
+
+            <div class="update-box">
+                <div class="update-date">アップデート (v2.6)</div>
+                <ul>
+                    <li><span class="update-category badge-system">システム</span> <strong>防具スキルのトグル式 ＆ ダイナミックスコアボードの導入！</strong><br>
+                        <code>Shift + F</code> で使いたい防具の部位を切り替え、<code>F</code> で発動できるようになりました。<br>
+                        また、武器を持った時だけ、画面右側に自分のコンボスキル一覧（ダイナミックスコアボード）が自動で表示されるようになり、戦闘中の操作性が飛躍的に向上しました！
+                    </li>
+                </ul>
+            </div>
+
+            <div class="update-box">
+                <div class="update-date">アップデート (v2.5)</div>
                 <ul>
                     <li><span class="update-category badge-balance">バランス調整</span> <strong>全スキルのマナ消費半減 ＆ クールダウン導入！</strong><br>
                         武器のすべての魔法スキルに対して、消費マナを約50%軽減しました。その代わり、スキルごとに3秒〜15秒の「クールダウン（再使用待機時間）」を追加。大技の連打を防ぎ、基本技と組み合わせて戦う戦略的なバトルシステムになりました。
                     </li>
                     <li><span class="update-category badge-new">新機能</span> <strong>ボス部屋の観戦モードを追加！</strong><br>
-                        <code>/mmodungeon spectate &lt;階層&gt;</code> で、戦闘中のプレイヤーを透明な状態（スペクテイター）で安全に見学できます。<code>/mmodungeon return</code> で元の場所・状態に完璧に復帰します。
+                        <code>/mmodungeon spectate &lt;階層&gt;</code> で、戦闘中のプレイヤーを透明な状態で安全に見学できるようになりました。
                     </li>
                 </ul>
             </div>
@@ -394,11 +448,13 @@
             </div>
 
             <div class="update-box">
-                <div class="update-date">アップデート (v2.3)</div>
+                <div class="update-date">過去のアップデート (v2.1 〜 v2.3)</div>
                 <ul>
-                    <li><span class="update-category badge-balance">調整</span> <strong>ダンジョンの「フラット化（横並び化）」を実施！</strong><br>
-                        1層〜4層という強さの階段をなくし、全ボスが同じ難易度になりました。好きな属性の武器や防具を狙って、好きなボスを周回できます。
-                    </li>
+                    <li><span class="update-category badge-balance">調整</span> ダンジョンのフラット化（※v2.7でインフレ仕様へ再調整）</li>
+                    <li><span class="update-category badge-new">新機能</span> 装備強化（Forge）システムを導入。</li>
+                    <li><span class="update-category badge-fix">修正</span> フレンドリーファイアの完全無効化。パーティメンバー同士に攻撃が当たらなくなりました。</li>
+                    <li><span class="update-category badge-new">新機能</span> ダンジョンポーチ（/mmostash）を追加。</li>
+                    <li><span class="update-category badge-balance">調整</span> ボス討伐時のレアドロップ天井システムを追加。</li>
                 </ul>
             </div>
         </div>
