@@ -15,6 +15,7 @@
             --update-bg: #f8f9fa;
             --danger: #e74c3c;
             --success: #2ecc71;
+            --highlight: #f39c12;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -30,7 +31,7 @@
             padding: 30px 0;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            background: linear-gradient(135deg, #2c3e50, #8e44ad);
+            background: linear-gradient(135deg, #1a252f, #3498db);
         }
         header h1 {
             margin: 0 0 10px 0;
@@ -123,7 +124,7 @@
         }
         .highlight {
             background-color: #fdf2e9;
-            border-left: 5px solid #f39c12;
+            border-left: 5px solid var(--highlight);
             padding: 15px;
             margin: 15px 0;
             border-radius: 4px;
@@ -180,7 +181,7 @@
         }
         .badge-new { background-color: var(--danger); }
         .badge-fix { background-color: var(--accent); }
-        .badge-balance { background-color: #f39c12; }
+        .badge-balance { background-color: var(--highlight); }
         .badge-system { background-color: #8e44ad; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -259,7 +260,13 @@
             </div>
 
             <div class="highlight">
-                <h3 style="margin-top:0; color:#8e44ad;">防具専用スキル (Shift + F)</h3>
+                <h3 style="margin-top:0; color:#c0392b;">🔥 戦術の要：クールダウンとマナ管理</h3>
+                <p>強力なスキル（究極技など）には <strong>3秒〜15秒のクールダウン（再使用待機時間）</strong> が設定されています。その代わり、<strong>すべてのスキルの消費マナが大幅に軽減</strong>されました！<br>
+                「強力な大技」を撃ったあとは、クールダウンが短い「基本技」で繋ぐなど、スキルのローテーションを工夫して戦うのがプロの冒険者です。</p>
+            </div>
+
+            <div class="command-group">
+                <h3>防具専用スキル (Shift + F)</h3>
                 <p>固有防具を装備した状態で、<strong>スニーク(しゃがみ)しながら Fキー(オフハンド切り替えキー) </strong>を押すと、防具に秘められた専用スキル（回復やバリアなど）が発動します！</p>
             </div>
 
@@ -307,6 +314,12 @@
             </div>
 
             <div class="command-group">
+                <h3>👀 観戦モード（Spectate）</h3>
+                <div class="command"><span>/mmodungeon spectate &lt;階層1~9&gt;</span> - 指定した階層のボス部屋に「スペクテイターモード（透明・無敵状態）」でテレポートし、他のプレイヤーの戦闘を観戦できます。</div>
+                <div class="command"><span>/mmodungeon return</span> - 観戦を終了し、観戦コマンドを打った「元の場所」「元のゲームモード」へ安全に帰還します。</div>
+            </div>
+
+            <div class="command-group">
                 <h3>テスト用コマンド</h3>
                 <div class="command"><span>/mmoadmin maxgear</span> - 管理者用。全エンチャントレベル255の最強ネザライト装備一式を取得します。ボス戦のテスト等に使用してください。</div>
                 <div class="command"><span>/mmoitem &lt;装備ID&gt;</span> - 各ボスの固有武器や防具を取得します。（例：levatein, garuda_bow）</div>
@@ -321,7 +334,19 @@
             <h2>📝 パッチノート ＆ 変更履歴</h2>
 
             <div class="update-box">
-                <div class="update-date">大型アップデート (v2.4) - 最新</div>
+                <div class="update-date">アップデート (v2.5) - 最新</div>
+                <ul>
+                    <li><span class="update-category badge-balance">バランス調整</span> <strong>全スキルのマナ消費半減 ＆ クールダウン導入！</strong><br>
+                        武器のすべての魔法スキルに対して、消費マナを約50%軽減しました。その代わり、スキルごとに3秒〜15秒の「クールダウン（再使用待機時間）」を追加。大技の連打を防ぎ、基本技と組み合わせて戦う戦略的なバトルシステムになりました。
+                    </li>
+                    <li><span class="update-category badge-new">新機能</span> <strong>ボス部屋の観戦モードを追加！</strong><br>
+                        <code>/mmodungeon spectate &lt;階層&gt;</code> で、戦闘中のプレイヤーを透明な状態（スペクテイター）で安全に見学できます。<code>/mmodungeon return</code> で元の場所・状態に完璧に復帰します。
+                    </li>
+                </ul>
+            </div>
+
+            <div class="update-box">
+                <div class="update-date">大型アップデート (v2.4)</div>
                 <ul>
                     <li><span class="update-category badge-new">新機能</span> <strong>全9階層のボスと武器が完全実装！</strong><br>
                         フェンリル、ガルーダ、エニグマ、デュラハン、ユグドラシルの5体のボスを追加しました。これに伴い、全9種の武器とそれぞれ12個（計108個）の魔法スキルが実装されました。
@@ -330,7 +355,7 @@
                         全ボスに対して「第一形態」「第二形態（激怒）」「大技」の3つのギミックを追加。ボスのセリフやダンジョン内の本からヒントを探し出す謎解き要素が追加されました。
                     </li>
                     <li><span class="update-category badge-fix">改善</span> <strong>ダンジョンオート保険の追加！</strong><br>
-                        <code>/insurance auto</code> が実装されました。死亡しても自動で500円を支払い保険に再加入するため、買い忘れによる全ロスの悲劇がなくなります。
+                        <code>/insurance auto</code> が実装され、死亡しても自動で500円を支払い保険に再加入するようになりました。
                     </li>
                     <li><span class="update-category badge-system">超軽量化</span> <strong>サーバー負荷の極限までの削減！</strong><br>
                         ボスの索敵ループやパッシブスキル判定の無駄を徹底的に排除。何十人が一斉にスキルを乱れ撃ちしてもサーバーが重くならない「超軽量化」を実現しました。
@@ -342,17 +367,7 @@
                 <div class="update-date">アップデート (v2.3)</div>
                 <ul>
                     <li><span class="update-category badge-balance">調整</span> <strong>ダンジョンの「フラット化（横並び化）」を実施！</strong><br>
-                        1層〜4層という強さの階段をなくし、<strong>全ボスが同じHP・攻撃力・ドロップ率</strong>になりました。好きな属性の武器や防具を狙って、好きなボスを周回できます。
-                    </li>
-                    <li><span class="update-category badge-new">新機能</span> 装備強化（Forge）システムを導入。</li>
-                </ul>
-            </div>
-
-            <div class="update-box">
-                <div class="update-date">アップデート (v2.2)</div>
-                <ul>
-                    <li><span class="update-category badge-fix">修正</span> <strong>フレンドリーファイアの完全無効化！</strong><br>
-                        パーティメンバー同士には、通常攻撃も広範囲の魔法スキルも一切当たらなくなりました。
+                        1層〜4層という強さの階段をなくし、全ボスが同じ難易度になりました。好きな属性の武器や防具を狙って、好きなボスを周回できます。
                     </li>
                 </ul>
             </div>
