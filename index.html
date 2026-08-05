@@ -251,9 +251,16 @@
         </div>
 
         <div class="card">
-            <h2>⚔️ 装備とスキルカスタマイズ</h2>
+            <h2>⚔️ 装備と基礎スキル (AuraSkills)</h2>
             <div class="command-group">
-                <h3>全12種類のスキルを組み替えよう！</h3>
+                <h3>基礎ステータスの確認と強化</h3>
+                <div class="command"><span>/skills</span> - AuraSkillsのメインメニューを開きます。</div>
+                <p>採掘や戦闘など、行動するたびに各スキルの経験値が貯まりレベルアップします。<br>
+                レベルが上がると「筋力（攻撃力）」「体力（HP上限）」「知力（マナ上限）」などの基礎ステータスが上昇し、キャラクター自体が強くなっていきます。</p>
+            </div>
+
+            <div class="command-group">
+                <h3>全12種類の魔法スキルを組み替えよう！</h3>
                 <div class="command"><span>/mmoskill</span> - 武器のスキルカスタマイズ画面を開きます。</div>
                 <p>各ボスの固有武器には、それぞれ<strong>12種類の魔法スキル</strong>が存在します。<br>
                 ボスを討伐して獲得した <strong>SP(スキルポイント)</strong> を使って新しいスキルを解放し、全8枠(右右右〜左左左)のコンボに好きなスキルをセットしましょう。</p>
@@ -297,6 +304,29 @@
                 <div class="command"><span>/mmoshop</span> - 【闇の行商人】武器ガチャや修繕のエンチャント本、レアアイテム（ビーコン等）が当たるかもしれない特別なパックを購入できます。</div>
             </div>
             <div class="command"><span>/bal</span> または <span>/money</span> - 現在の自分の所持金を確認します。</div>
+        </div>
+
+        <div class="card">
+            <h2>🏪 プレイヤーのお店（チェストショップ）の作り方</h2>
+            <p>「QuickShop」プラグインを使い、自分のアイテムを他のプレイヤーに売ったり、買い取ったりするお店を作ることができます。</p>
+            
+            <div class="command-group">
+                <h3>お店の作り方手順</h3>
+                <ol>
+                    <li>チェストを地面に置きます。</li>
+                    <li>売りたい（または買い取りたい）アイテムを<strong>手に持ちます。</strong></li>
+                    <li>そのアイテムを持ったまま、<strong>チェストを左クリック（叩く）</strong>します。</li>
+                    <li>チャット欄に「いくらで取引しますか？」と聞かれるので、<strong>値段（数字のみ）をチャットに入力してエンター</strong>を押します。</li>
+                    <li>これでお店（販売モード）が完成です！チェストの中に商品を補充しておきましょう。</li>
+                </ol>
+            </div>
+            <div class="command-group">
+                <h3>お店の設定変更コマンド（看板を見ながら入力）</h3>
+                <div class="command"><span>/qs buy</span> - お店を「買取モード（他のプレイヤーからアイテムを買い取る）」に変更します。</div>
+                <div class="command"><span>/qs sell</span> - お店を「販売モード（アイテムを売る）」に戻します。</div>
+                <div class="command"><span>/qs price &lt;新しい値段&gt;</span> - お店の値段を変更します。</div>
+                <div class="command"><span>/qs remove</span> - お店を撤去します。</div>
+            </div>
         </div>
     </div>
 
