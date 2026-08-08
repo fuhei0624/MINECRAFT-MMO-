@@ -325,6 +325,7 @@
                     <li><a href="#boss">🐉 ボス攻略＆図鑑</a></li>
                     <li><a href="#faq">❓ よくある質問 (FAQ)</a></li>
                     <li><a href="#updates">📝 パッチノート</a></li>
+                    <li><a href="#admin">🛡️ 運営・管理者向け</a></li>
                 </ul>
             </nav>
         </aside>
@@ -608,6 +609,38 @@
                         <li><strong>ボスシステム:</strong> 第1階層〜第4階層の初期ボス（イフリート、サジタリウス、リヴァイアサン等）の登場とダンジョンシステム構築。</li>
                         <li><strong>パーティシステム:</strong> プレイヤー同士が協力できる <code>/party</code> コマンドの導入。</li>
                     </ul>
+                </div>
+            </section>
+
+            <!-- ================= 運営・管理者向け ================= -->
+            <section id="admin" class="section">
+                <h2 class="section-title">🛡️ 運営向けシステム・建築コマンド</h2>
+                <div class="card fade-up">
+                    <h3 style="color: var(--accent-main); margin-top: 0;">ダンジョン設営</h3>
+                    <span class="cmd-block">/mmodungeon setgate [階層1~10]</span>
+                    <span class="cmd-desc">視線先のブロックを入場ゲート（クリック判定）に設定。</span>
+                    <span class="cmd-block">/mmodungeon setbossroom [階層1~10]</span>
+                    <span class="cmd-desc">現在位置をボス部屋の転送先（TP位置）に設定。</span>
+                    <span class="cmd-block">/mmodungeon setlobby [階層1~10]</span>
+                    <span class="cmd-desc">現在位置をボス討伐後の帰還用ロビーに設定。</span>
+                    <span class="cmd-block">/mmodungeon book [階層1~10]</span>
+                    <span class="cmd-desc"><strong>[重要]</strong> その階層の「ギミックのヒントが書かれた本」を取得。ボス部屋の前の書見台に設置してください。</span>
+
+                    <h3 style="color: var(--accent-main); margin-top:30px;">👀 観戦とホログラム</h3>
+                    <span class="cmd-block">/mmoadmin holo [階層1~10]</span>
+                    <span class="cmd-desc">現在位置に、指定階層のヒントが書かれた美麗なホログラムを自動生成します。(DecentHolograms必須)</span>
+                    <span class="cmd-block">/mmodungeon spectate [階層1~10]</span>
+                    <span class="cmd-desc">指定した階層のボス部屋に「スペクテイターモード」でテレポートし、観戦します。</span>
+                    <span class="cmd-block">/mmodungeon return</span>
+                    <span class="cmd-desc">観戦を終了し、元の場所へ安全に帰還します。</span>
+
+                    <h3 style="color: var(--accent-main); margin-top:30px;">テスト用コマンド</h3>
+                    <span class="cmd-block">/mmoadmin maxgear</span>
+                    <span class="cmd-desc">全エンチャントLv255の最強装備一式を取得。デバッグ用。</span>
+                    <span class="cmd-block">/mmoitem [装備ID]</span>
+                    <span class="cmd-desc">各ボスの固有武器や防具を取得します。（例：levatein, garuda_bow）</span>
+                    <span class="cmd-block">/mmoboss spawn [ボスID]</span>
+                    <span class="cmd-desc">視線先にボスを強制召喚します。（例：arachne）</span>
                 </div>
             </section>
 
