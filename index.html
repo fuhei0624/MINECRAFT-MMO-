@@ -4,459 +4,598 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MMO Server 取扱説明書</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #34495e;
-            --accent: #3498db;
-            --bg: #ecf0f1;
-            --card-bg: #ffffff;
-            --text: #333333;
-            --update-bg: #f8f9fa;
-            --danger: #e74c3c;
-            --success: #2ecc71;
-            --highlight: #f39c12;
-            --purple: #8e44ad;
+            /* ダーク＆サイバーファンタジー風のカラーパレット */
+            --bg-color: #0f172a;       /* 深い紺色ベース */
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e1b4b);
+            --card-bg: rgba(30, 41, 59, 0.7); /* 半透明グラスモーフィズム */
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            
+            --accent-blue: #38bdf8;
+            --accent-purple: #a855f7;
+            --accent-green: #34d399;
+            --accent-gold: #fbbf24;
+            --accent-red: #ef4444;
+            
+            --glow-blue: 0 0 15px rgba(56, 189, 248, 0.4);
+            --glow-purple: 0 0 15px rgba(168, 85, 247, 0.4);
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+            line-height: 1.7;
         }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+        }
+
+        /* ヒーローヘッダー */
         header {
-            background-color: var(--primary);
-            color: white;
-            padding: 30px 0;
+            position: relative;
+            padding: 60px 20px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            background: linear-gradient(135deg, #1a252f, #3498db);
+            overflow: hidden;
+            border-bottom: 1px solid var(--card-border);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
         }
+
+        /* ヘッダーの装飾 */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(56,189,248,0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50%; right: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+
         header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow-blue);
+            font-weight: 900;
+            letter-spacing: 2px;
         }
+
         header p {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 1.2rem;
+            color: var(--text-sub);
+            margin-top: 10px;
+            font-weight: 700;
         }
+
         .container {
-            max-width: 1000px;
-            margin: 20px auto;
+            max-width: 1100px;
+            margin: 40px auto;
             padding: 0 20px;
         }
+
+        /* タブナビゲーション */
         .tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
             flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
         }
+
         .tab-button {
-            background-color: #bdc3c7;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-sub);
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
             cursor: pointer;
-            margin: 5px;
-            border-radius: 8px 8px 0 0;
-            font-weight: bold;
-            transition: all 0.3s;
-            color: #2c3e50;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(5px);
         }
+
         .tab-button:hover {
-            background-color: #95a5a6;
-            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            transform: translateY(-2px);
         }
+
         .tab-button.active {
-            background-color: var(--accent);
-            color: white;
-            box-shadow: 0 -3px 5px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(168,85,247,0.2));
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            box-shadow: var(--glow-blue);
         }
+
         .tab-content {
             display: none;
-            animation: fadeIn 0.4s ease-in-out;
+            animation: fadeSlideUp 0.5s ease forwards;
         }
         .tab-content.active {
             display: block;
         }
+
+        /* グラスモーフィズムカード */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--accent);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
         }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+        }
+
         .card h2 {
+            font-size: 2rem;
             margin-top: 0;
-            color: var(--primary);
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 10px;
-            font-size: 1.6em;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
-        .command-group {
-            margin-top: 20px;
-            background-color: #f8faff;
+
+        /* ステップ解説 (初心者用) */
+        .step-box {
+            display: flex;
+            margin-bottom: 30px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-blue);
             padding: 20px;
+            transition: transform 0.2s;
+        }
+        .step-box:hover {
+            transform: translateX(5px);
+            background: rgba(0,0,0,0.3);
+        }
+        .step-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-blue);
+            min-width: 60px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .step-content h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+        }
+
+        /* コマンドボックス */
+        .cmd-block {
+            background: #000;
+            border: 1px solid #334155;
             border-radius: 8px;
-            border-left: 5px solid var(--accent);
-        }
-        .command-group h3 {
-            margin-top: 0;
-            color: var(--secondary);
-            font-size: 1.2em;
-        }
-        .command {
-            background-color: #ffffff;
-            border: 1px solid #e1e8ed;
-            border-left: 4px solid var(--secondary);
-            padding: 12px;
+            padding: 12px 15px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: var(--accent-green);
             margin: 10px 0;
-            font-family: 'Consolas', monospace;
-            font-size: 15px;
-            border-radius: 4px;
+            display: inline-block;
+            font-size: 1.1rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
         }
-        .command span {
-            color: var(--danger);
-            font-weight: bold;
-        }
-        .highlight {
-            background-color: #fdf2e9;
-            border-left: 5px solid var(--highlight);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        .boss-guide {
-            background: linear-gradient(to right, #ffffff, #fff5f5);
-            border: 2px solid var(--danger);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        .boss-guide h3 {
-            color: #c0392b;
-            margin-top: 0;
-            font-size: 1.4em;
-        }
-        .boss-guide ul li {
+        .cmd-desc {
+            display: block;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-top: 5px;
             margin-bottom: 15px;
         }
-        .hint-box {
-            background-color: #fff;
-            padding: 12px;
-            margin-top: 5px;
-            border-radius: 4px;
-            font-size: 0.95em;
-            border-left: 4px solid #f1c40f;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+        /* アラート・ヒントボックス */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--accent-red);
         }
-        /* アップデート履歴用のスタイル */
-        .update-box {
-            background-color: var(--update-bg);
-            border-left: 5px solid var(--danger);
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        .alert.info {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-blue);
         }
-        .update-date {
-            font-weight: bold;
-            color: #c0392b;
-            font-size: 1.2em;
-            margin-bottom: 12px;
-            border-bottom: 1px dashed #d1d8e0;
-            padding-bottom: 5px;
+        .alert.warning {
+            background: rgba(251, 191, 36, 0.1);
+            border-color: var(--accent-gold);
         }
-        .update-category {
+
+        /* リストスタイル */
+        ul.custom-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        ul.custom-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+        ul.custom-list li::before {
+            content: '❖';
+            position: absolute;
+            left: 0;
+            color: var(--accent-purple);
+        }
+
+        /* バッジ */
+        .badge {
             display: inline-block;
             padding: 4px 10px;
             border-radius: 12px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-right: 10px;
-            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 8px;
+            color: #000;
         }
-        .badge-new { background-color: var(--danger); }
-        .badge-fix { background-color: var(--accent); }
-        .badge-balance { background-color: var(--highlight); }
-        .badge-system { background-color: var(--purple); }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        .badge-new { background: var(--accent-red); color: white;}
+        .badge-fix { background: var(--accent-blue); }
+        .badge-system { background: var(--accent-purple); color: white;}
+        .badge-balance { background: var(--accent-gold); }
+
+        /* アップデートブロック */
+        .update-box {
+            border-left: 2px dashed #475569;
+            padding-left: 25px;
+            margin-left: 10px;
+            position: relative;
+            padding-bottom: 30px;
+        }
+        .update-box::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-purple);
+            box-shadow: var(--glow-purple);
+        }
+        .update-date {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .tabs { flex-direction: column; }
+            .tab-button { text-align: center; }
+            .step-box { flex-direction: column; }
+            .step-number { font-size: 2rem; margin-bottom: 10px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>MMO Server 総合取扱説明書</h1>
-    <p>全9階層 踏破ガイド ＆ 冒険と経済の極意</p>
+    <h1>MMO Server Guide</h1>
+    <p>果てなき9階層のダンジョンと、冒険者たちの経済</p>
 </header>
 
 <div class="container">
     <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'player')">🎮 冒険・システム</button>
-        <button class="tab-button" onclick="openTab(event, 'economy')">💰 職業・経済・お店</button>
-        <button class="tab-button" onclick="openTab(event, 'admin')">🛡️ 運営・管理者</button>
-        <button class="tab-button" onclick="openTab(event, 'updates')">📝 アプデ履歴</button>
+        <button class="tab-button active" onclick="openTab(event, 'beginner')">🔰 初心者ガイド (必読)</button>
+        <button class="tab-button" onclick="openTab(event, 'combat')">⚔️ バトル ＆ 装備強化</button>
+        <button class="tab-button" onclick="openTab(event, 'economy')">💰 職業 ＆ お金稼ぎ</button>
+        <button class="tab-button" onclick="openTab(event, 'boss')">🐉 ボス攻略指南</button>
+        <button class="tab-button" onclick="openTab(event, 'updates')">📝 パッチノート</button>
+        <button class="tab-button" onclick="openTab(event, 'admin')">🛡️ 運営用コマンド</button>
     </div>
 
-    <!-- ================= 冒険・システム コンテンツ ================= -->
-    <div id="player" class="tab-content active">
-        
+    <!-- ================= 初心者ガイド ================= -->
+    <div id="beginner" class="tab-content active">
         <div class="card">
-            <h2>🐉 ダンジョンとボス戦の極意</h2>
-            <p>第1層〜第9層まで、強大な力を持つボスたちがあなたを待ち受けています。<br>
-            彼らのHPは莫大であり、ただ殴るだけ（ごり押し）では<strong>ダメージが90%カットされてしまい絶対に勝てません。</strong></p>
-            
-            <div class="boss-guide">
-                <h3>⚠️ ボス戦 3つのルール ⚠️</h3>
-                <ul>
-                    <li><strong>① 第一形態ギミック（HP50%以上）</strong><br>
-                        ボス戦開始直後、ボスは強固な装甲に守られています。<br>
-                        戦闘中にボスが発する<strong>「セリフ」</strong>をよく聞き、特定の行動（アイテムを当てる等）を行うことで、装甲が割れて大ダメージを与えられます！
-                    </li>
-                    <li><strong>② 第二形態ギミック（HP50%以下・激怒）</strong><br>
-                        HPが半分を切るとボスは激怒し、<strong>第一形態とは全く違うバリア</strong>を展開します。<br>
-                        この解除方法は、ダンジョン内のどこかにある<strong>『冒険者の手記』</strong>にヒントが書かれています。謎を解き明かしましょう！
-                    </li>
-                    <li><strong>③ ランダム大技ギミック（回避不可の即死攻撃）</strong><br>
-                        戦闘中、ボスは突如として「大技の詠唱」を始めます。周囲に特定のブロックが現れるので、画面の指示に従って<strong>10秒以内</strong>に解除・破壊してください。失敗すればパーティは全滅します。
-                    </li>
-                </ul>
-                <div class="hint-box">
-                    <strong>💡 MMOの醍醐味：前の階層の素材がカギを握る！？</strong><br>
-                    あるボスのギミックを解くためのアイテムが、実は<strong>前の階層のボスからドロップする素材</strong>だった…ということがあります。様々な素材を集めておきましょう！どうしても手に入らない場合は、ショップ(<code>/mmoshop</code>)のギミック攻略パックを活用してください。
+            <h2>🔰 ゼロからわかる！MMOサーバーの歩き方</h2>
+            <p>このサーバーに参加して「まず何をすればいいの？」という方は、以下のステップに沿って冒険を始めてみましょう！</p>
+
+            <div class="step-box">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>職業に就いてお金を稼ごう！</h3>
+                    <p>このサーバーでは、強い装備を買ったり、ダンジョン保険に入るために<strong>「お金（円）」</strong>が必要です。<br>
+                    まずは職業（Job）に就いて、いつものマイクラの作業でお金を稼ぎましょう。</p>
+                    <span class="cmd-block">/jobs browse</span>
+                    <span class="cmd-desc">職業一覧を開きます。「木こり(Woodcutter)」「鉱夫(Miner)」など好きなものを選びましょう。</span>
+                    <span class="cmd-block">/bal</span> または <span class="cmd-block">/money</span>
+                    <span class="cmd-desc">現在の所持金を確認できます。</span>
                 </div>
             </div>
 
-            <div class="command-group" style="border-left-color: var(--success);">
-                <h3 style="color: var(--success);">🛡️ 必見！ダンジョンオート保険</h3>
-                <div class="command"><span>/insurance auto</span> - オート保険モードをON/OFFします。</div>
-                <p>ダンジョンで全ロスを経験したくないなら、絶対にこれを使ってください！<br>
-                ONにしておけば、死んで保険を消費した直後に<strong>自動で500円支払って再加入</strong>してくれます。買い忘れによるアイテム全ロス事故を完全に防げます！</p>
-            </div>
-
-            <div class="command-group">
-                <h3>🤝 パーティシステム</h3>
-                <div class="command"><span>/party invite &lt;プレイヤー名&gt;</span> - プレイヤーを招待。</div>
-                <div class="command"><span>/party accept</span> - 招待を受け入れる。(ボス部屋侵入に必須)</div>
-                <p>パーティメンバー同士は、攻撃や広範囲の魔法スキルが一切当たらなくなります（フレンドリーファイア無効）。安心してド派手な大技を連発しましょう！</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>⚔️ ステータスとスキルカスタマイズ</h2>
-            
-            <div class="command-group" style="border-left-color: var(--purple);">
-                <h3 style="color: var(--purple);">💪 基礎ステータス (AuraSkills)</h3>
-                <div class="command"><span>/skills</span> - メインメニューを開き、自分のレベルや能力を確認します。</div>
-                <p>採掘、農業、戦闘など、行動するたびに各スキルの経験値が貯まりレベルアップします。<br>
-                レベルが上がると「筋力（攻撃力）」「体力（HP上限）」「知力（マナ上限）」などの基礎ステータスが上昇し、キャラクター自体が強くなっていきます。</p>
-            </div>
-
-            <div class="command-group">
-                <h3>🪄 カスタム武器のスキル編成</h3>
-                <div class="command"><span>/mmoskill</span> - 武器のスキルカスタマイズ画面を開きます。</div>
-                <p>各ボスの固有武器には、それぞれ<strong>12種類の魔法スキル</strong>が存在します。<br>
-                ボスを討伐して獲得した <strong>SP(スキルポイント)</strong> を使って新しいスキルを解放し、全8枠(右右右〜左左左)のコンボに好きなスキルをセットしましょう。</p>
-                <div class="hint-box">
-                    <strong>🔥 戦術の要：クールダウンとマナ管理</strong><br>
-                    すべてのスキルの消費マナは低めですが、代わりに強力なスキルには <strong>3秒〜15秒のクールダウン</strong> があります。大技と基本技をバランス良くセットするのがプロの冒険者です。
+            <div class="step-box">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>AuraSkills で基礎ステータスを上げよう！</h3>
+                    <p>木を切る、採掘する、敵を倒すなどの行動をとると「AuraSkills」の経験値が貯まります。<br>
+                    レベルが上がると、<strong>HPの最大値や、攻撃力（筋力）、スキルの発動に必要な「マナ」の上限</strong>が増えていきます。</p>
+                    <span class="cmd-block">/skills</span>
+                    <span class="cmd-desc">自分のスキルレベルや、現在のステータス詳細を確認できるメニューを開きます。</span>
                 </div>
             </div>
 
-            <div class="command-group">
-                <h3>🛡️ 防具専用スキル (トグル発動)</h3>
-                <p>固有防具を装備した状態で <strong>「スニーク(しゃがみ) ＋ Fキー」</strong> を押すと、画面下部のサブタイトルで発動する部位（頭・胸・脚・足）を切り替えることができます。<br>
-                使いたい部位が選択された状態で、<strong>普通に「Fキー」を押す</strong>と、防具に秘められた専用スキル（回復やバリアなど）が発動します！</p>
+            <div class="step-box">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>闇の行商人から装備をゲットしよう！</h3>
+                    <p>お金が貯まってきたら、ダンジョンに挑むための強力な武器や防具を手に入れましょう。</p>
+                    <span class="cmd-block">/mmoshop</span>
+                    <span class="cmd-desc">専用のショップを開きます。「ランダム固有武器ガチャ」などで強力な武器を手に入れましょう。</span>
+                    <div class="alert info">
+                        <strong>💡 いらない素材は売ろう！</strong><br>
+                        <code>/mmosell</code> コマンドを使うと、ゾンビ肉や鉄インゴットなどの通常アイテムや、ダンジョンで余ったボス素材をその場で一括売却してお金に換えられます！
+                    </div>
+                </div>
             </div>
 
-            <div class="command-group">
-                <h3>🔨 装備の限界突破 (合成強化)</h3>
-                <div class="command"><span>/mmoforge</span> - 装備の強化(合成)画面を開きます。</div>
-                <p>同じ固有武器や固有防具同士を合成することで、装備を <strong>最大+10</strong> まで強化可能。<br>
-                1層の武器を+10まで強化すれば、次の層の装備にも引けを取らない強さになります！</p>
+            <div class="step-box">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3>いざダンジョンへ！の前に…（超重要）</h3>
+                    <p>このサーバーのダンジョンボスは<strong>非常に強力</strong>です。油断すると一撃で死んでしまい、持っているアイテムを全てロスト（消滅）してしまいます。<br>
+                    全ロスを防ぐために、必ず<strong>「ダンジョン保険」</strong>に加入してください。</p>
+                    <span class="cmd-block">/insurance auto</span>
+                    <span class="cmd-desc">オート保険モードをONにします。（1回死亡するごとに自動で500円支払って保険を更新してくれます。<strong>絶対にONにしておきましょう！</strong>）</span>
+                </div>
             </div>
-        </div>
 
-        <div class="card">
-            <h2>🏠 拠点・移動・インベントリ</h2>
-            <div class="command-group">
-                <h3>基本コマンド (EssentialsX)</h3>
-                <div class="command"><span>/spawn</span> - サーバーの初期スポーン地点に戻ります。</div>
-                <div class="command"><span>/sethome &lt;名前&gt;</span> - 現在の場所をホームとして登録します。</div>
-                <div class="command"><span>/home &lt;名前&gt;</span> - 登録したホームへテレポートします。</div>
+            <div class="step-box">
+                <div class="step-number">05</div>
+                <div class="step-content">
+                    <h3>仲間とパーティを組もう！</h3>
+                    <p>ボスはソロ（1人）で倒すのは至難の業です。仲間を誘ってパーティを組みましょう！<br>
+                    パーティを組むと<strong>味方に攻撃が当たらなくなり（FF無効）</strong>、ボス部屋への転送も一緒に行われます。</p>
+                    <span class="cmd-block">/party invite [プレイヤー名]</span>
+                    <span class="cmd-desc">仲間をパーティに招待します。</span>
+                    <span class="cmd-block">/party accept</span>
+                    <span class="cmd-desc">招待された側が入力するとパーティに参加できます。</span>
+                </div>
             </div>
-            
-            <div class="command-group" style="border-left-color: var(--highlight);">
-                <h3 style="color: var(--highlight);">🎒 ダンジョンポーチ</h3>
-                <div class="command"><span>/mmostash</span> - 専用のダンジョンポーチを開きます。</div>
-                <p>ボスを討伐した際のドロップ報酬は、<strong>自動的にこの専用ポーチ(54枠)の中に収納</strong>されます。インベントリがいっぱいでも安心です。※自分のインベントリへの取り出し専用です。</p>
+
+            <div class="alert warning">
+                <strong>困ったときは？</strong><br>
+                <code>/mmomenu</code> コマンドを実行すると、いつでもどこからでもこれらの主要コマンドをボタン一つで実行できる総合メニューが開きます！
             </div>
         </div>
     </div>
 
-    <!-- ================= 経済・職業・お店コンテンツ ================= -->
+    <!-- ================= バトル・装備強化 ================= -->
+    <div id="combat" class="tab-content">
+        <div class="card">
+            <h2>⚔️ 魔法スキルのカスタマイズ (Weapon Combo)</h2>
+            <p>固有武器には、それぞれ<strong>12種類の魔法スキル</strong>が秘められています。<br>
+            ボスを倒して手に入る「SP（スキルポイント）」を使ってスキルを解放し、自分だけのコンボを組み立てましょう！</p>
+            
+            <span class="cmd-block">/mmoskill</span>
+            <span class="cmd-desc">スキルカスタマイズ画面を開きます。</span>
+
+            <ul class="custom-list">
+                <li><strong>コンボの発動方法:</strong> 武器を手にした状態で、「右クリック・左クリック」を合計3回組み合わせることでスキルが発動します。</li>
+                <li><strong>コンボ枠 (8種類):</strong> [右・右・右]、[右・右・左]、[左・左・右] など、全8種類の枠に好きなスキルをセットできます。</li>
+                <li><strong>マナとクールダウン:</strong> スキルを発動すると「マナ」を消費します。強力な大技には<strong>クールダウン（数秒の再使用待ち時間）</strong>があるため、連発はできません。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🛡️ 防具の専用スキル (Armor Skill)</h2>
+            <p>一部の固有防具には、武器とは別に「防具専用のスキル（回復やバリアなど）」が備わっています。</p>
+            
+            <div class="alert info">
+                <strong>防具スキルの発動方法</strong><br>
+                1. <strong>[スニーク (しゃがみ) ＋ Fキー]</strong> を押すと、発動する部位（ヘルメット、チェストプレートなど）を切り替えることができます。<br>
+                2. 使いたい部位が選択された状態で、<strong>[Fキー (オフハンド切り替えキー)]</strong> を単押しすると、その防具のスキルが即座に発動します！
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🔨 装備の限界突破 (Forge)</h2>
+            <p>ダンジョンは第1層から第9層まで、階段状に敵が強くなっていきます（階層インフレ）。<br>
+            次の層のボスに勝てない時は、同じ装備同士を合成して「限界突破」させましょう！</p>
+
+            <span class="cmd-block">/mmoforge</span>
+            <span class="cmd-desc">鍛冶GUIを開きます。</span>
+
+            <ul class="custom-list">
+                <li><strong>合成ルール:</strong> まったく同じ名前の武器（または防具）を2つ用意し、ベースと素材枠にセットして中央の金床ボタンを押します。</li>
+                <li><strong>強化の上限:</strong> 最大で <strong>+10</strong> まで強化可能です。</li>
+                <li><strong>効果:</strong> +1されるごとに、武器の威力や防具の硬さが飛躍的に上昇します。第1層の武器でも、+10まで鍛えれば中盤のボスにも通用するようになります！</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= 職業・お金稼ぎ ================= -->
     <div id="economy" class="tab-content">
         <div class="card">
-            <h2>💼 職業に就いてお金を稼ごう (Jobs)</h2>
-            <p>このサーバーでは、特定の行動をすることでお金（円）を稼ぐことができます。</p>
+            <h2>🏪 お店の作り方とプレイヤー間取引</h2>
+            <p>このサーバーでは、プレイヤー同士で自由にアイテムを売買して経済を回すことができます。<br>
+            不要になった強力な武器をオークションに出したり、自分の拠点にチェストショップを作って商売を始めましょう！</p>
 
-            <div class="command-group">
-                <div class="command"><span>/jobs browse</span> - 職業の一覧を表示し、好きな職業に就くことができます。</div>
-                <div class="command"><span>/jobs leave &lt;職業名&gt;</span> - 現在の職業を辞めます。</div>
-                <p><strong>【職業の例】</strong><br>
-                ⛏️ <strong>Miner（鉱夫）:</strong> 石や鉱石を掘るとお金がもらえる。<br>
-                🪓 <strong>Woodcutter（木こり）:</strong> 木を切るとお金がもらえる。<br>
-                ⚔️ <strong>Hunter（狩人）:</strong> モブを倒すとお金がもらえる。<br>
-                などなど！プレイスタイルに合わせて選びましょう。</p>
+            <h3 style="color: var(--accent-gold); margin-top:30px;">🛒 オークションハウス (AuctionHouse)</h3>
+            <span class="cmd-block">/ah</span>
+            <span class="cmd-desc">全プレイヤーが出品しているアイテム一覧を開きます。どこにいても買い物ができます。</span>
+            <span class="cmd-block">/ah sell [値段]</span>
+            <span class="cmd-desc">手に持っているアイテムを、指定した値段でオークションに出品します。</span>
+
+            <h3 style="color: var(--accent-green); margin-top:30px;">🏪 チェストショップ (QuickShop)</h3>
+            <p>自分の拠点（家）にチェストを置いて、自動販売機/自動買取機を作ることができます。</p>
+            <ul class="custom-list">
+                <li>チェストを地面に置きます。</li>
+                <li>売りたい（または買い取りたい）アイテムを<strong>手に持ちます。</strong></li>
+                <li>そのアイテムを持ったまま、<strong>チェストを左クリック（叩く）</strong>します。</li>
+                <li>チャット欄に「いくらで取引しますか？」と聞かれるので、<strong>値段（数字のみ）をチャットに入力してエンター</strong>を押します。</li>
+                <li>これでお店が完成です！チェストの中に商品を補充しておきましょう。</li>
+            </ul>
+            <div class="alert info">
+                チェストに貼り付けられた看板を見ながら、以下のコマンドで設定を変更できます。<br>
+                <code>/qs buy</code> : お店を「買取モード」に変更する。<br>
+                <code>/qs sell</code> : お店を「販売モード」に戻す。<br>
+                <code>/qs price [新しい値段]</code> : 値段を変更する。
             </div>
-            <div class="command"><span>/bal</span> または <span>/money</span> - 現在の自分の所持金を確認します。（右側の画面にも常にリアルタイムで表示されます）</div>
         </div>
 
         <div class="card">
-            <h2>💎 サーバー公式の取引所</h2>
-            <div class="command-group">
-                <h3>ボスの特別報酬と素材買取所</h3>
-                <div class="command"><span>/mmosell</span> - 【素材一括買取所】ボスからドロップした特別な素材や、集めた通常素材(ゾンビ肉、鉱石など)を一括で買い取ってくれます。</div>
-                <div class="command"><span>/mmoshop</span> - 【闇の行商人】武器ガチャやレアアイテムに加え、<strong>ギミック解除用のアイテム詰め合わせパック</strong>もここで購入できます。</div>
-            </div>
+            <h2>🎒 ダンジョンポーチ (Stash)</h2>
+            <p>ボスを討伐した際、アイテムがインベントリに入りきらなくてロストするのを防ぐためのシステムです。</p>
+            <span class="cmd-block">/mmostash</span>
+            <span class="cmd-desc">自分専用のダンジョンポーチ（54枠の特大インベントリ）を開きます。</span>
+            <p>ボス討伐報酬は、<strong>自動的にこのポーチの中に収納されます。</strong> 拠点に帰ってから、ゆっくり自分のインベントリに取り出しましょう。（※ポーチの中に手持ちのアイテムを入れることはできません。取り出し専用です）</p>
         </div>
+    </div>
 
+    <!-- ================= ボス攻略指南 ================= -->
+    <div id="boss" class="tab-content">
         <div class="card">
-            <h2>🏪 プレイヤー間取引 (お店 ＆ オークション)</h2>
-            <p>プレイヤー同士でアイテムを売買する方法は2種類あります。</p>
+            <h2>🐉 強大なボスに挑むための3つのギミック</h2>
+            <p>第1層〜第9層のボスは、単なる殴り合い（ごり押し）では<strong>ダメージが90%カットされてしまい、絶対に倒せません。</strong><br>
+            ボスが展開する様々な「ギミック（仕掛け）」を理解し、仲間と協力して解除する必要があります。</p>
 
-            <div class="command-group" style="border-left-color: var(--success);">
-                <h3 style="color: var(--success);">🛒 オークションハウス (AuctionHouse)</h3>
-                <div class="command"><span>/ah</span> - 全プレイヤーが出品しているアイテムの一覧（オークション）を開きます。どこからでも買えます。</div>
-                <div class="command"><span>/ah sell &lt;値段&gt;</span> - 手に持っているアイテムをオークションに出品します。</div>
+            <div class="alert warning" style="margin-top: 30px;">
+                <h3 style="margin-top:0; color:var(--accent-red);">① 第一形態ギミック（装甲破壊）</h3>
+                <p>ボス戦開始直後、ボスは強力な装甲に守られています。<br>
+                戦闘中にボスが発する<strong>「セリフ」</strong>をよく聞いてください。弱点となる特定のアイテムを当てたり、特定の条件を満たすことで装甲が割れ、初めてまともなダメージが通るようになります。</p>
             </div>
 
-            <div class="command-group">
-                <h3>🏪 チェストショップの作り方 (QuickShop)</h3>
-                <ol>
-                    <li>チェストを地面に置きます。</li>
-                    <li>売りたい（または買い取りたい）アイテムを<strong>手に持ちます。</strong></li>
-                    <li>そのアイテムを持ったまま、<strong>チェストを左クリック（叩く）</strong>します。</li>
-                    <li>チャット欄に「いくらで取引しますか？」と聞かれるので、<strong>値段（数字のみ）をチャットに入力してエンター</strong>を押します。</li>
-                    <li>これでお店（販売モード）が完成です！チェストの中に商品を補充しておきましょう。</li>
-                </ol>
-                <div class="hint-box">
-                    <strong>お店の設定変更コマンド（看板を見ながら入力）</strong><br>
-                    <code>/qs buy</code> - お店を「買取モード」に変更する。<br>
-                    <code>/qs sell</code> - お店を「販売モード」に戻す。<br>
-                    <code>/qs price &lt;新しい値段&gt;</code> - 値段を変更する。<br>
-                    <code>/qs remove</code> - お店を撤去する。
+            <div class="alert info">
+                <h3 style="margin-top:0; color:var(--accent-blue);">② 第二形態ギミック（激怒と謎解き）</h3>
+                <p>ボスのHPが半分を切ると激怒し、<strong>第一形態とは全く違うバリア</strong>を展開します。<br>
+                この第二形態の解除方法は、ダンジョン内のどこかにある<strong>『冒険者の手記』</strong>にヒントが書かれています。挑む前に必ず本を読んで謎を解き明かしておきましょう！</p>
+            </div>
+
+            <div class="alert" style="background: rgba(168, 85, 247, 0.1); border-color: var(--accent-purple);">
+                <h3 style="margin-top:0; color:var(--accent-purple);">③ ランダム大技（即死回避）</h3>
+                <p>戦闘中、ボスは突如として「大技の詠唱」を始めます。<br>
+                周囲の特定の場所にブロックが現れるので、画面の指示に従って<strong>10秒以内</strong>に解除・破壊してください。<br>
+                失敗すれば、問答無用でパーティ全員が即死（全滅）します。</p>
+            </div>
+
+            <div class="step-box" style="margin-top: 40px; border-color: var(--accent-gold);">
+                <div class="step-content">
+                    <h3 style="color: var(--accent-gold);">💡 攻略のヒント：過去の層が未来を拓く</h3>
+                    <p>あるボスのギミックを解くためのアイテムが、実は<strong>前の階層のボスからドロップする素材</strong>だった…ということがあります。素材は売らずに少しずつ保管しておきましょう！<br>
+                    どうしてもギミックアイテムが手に入らない場合は、ショップ(<code>/mmoshop</code>)の「ギミック攻略パック」を活用してください。</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= 運営・管理者向けコンテンツ ================= -->
-    <div id="admin" class="tab-content">
-        <div class="card">
-            <h2>⚙️ 運営向けシステム・建築コマンド</h2>
-            
-            <div class="command-group">
-                <h3>ダンジョン設営</h3>
-                <div class="command"><span>/mmodungeon setgate &lt;階層1~9&gt;</span> - 視線先のブロックを入場ゲートに設定。</div>
-                <div class="command"><span>/mmodungeon setbossroom &lt;階層1~9&gt;</span> - 現在位置をボス部屋のTP先に設定。</div>
-                <div class="command"><span>/mmodungeon setlobby &lt;階層1~9&gt;</span> - 現在位置をボス討伐後の帰還用ロビーに設定。</div>
-                <div class="command"><span>/mmodungeon book &lt;階層1~9&gt;</span> - <strong>[重要]</strong> その階層の「ギミックのヒントが書かれた本」を取得します。ボス部屋の前に「書見台」を置いて設置してください。（このコマンドで出した本は、一般プレイヤーが持ち去ることができないよう保護されます）</div>
-            </div>
-
-            <div class="command-group">
-                <h3>👀 観戦とホログラム</h3>
-                <div class="command"><span>/mmoadmin holo &lt;階層1~9&gt;</span> - DecentHolograms APIを用いて、現在位置に指定階層のヒントが書かれた美麗なホログラムを自動生成します。</div>
-                <div class="command"><span>/mmodungeon spectate &lt;階層1~9&gt;</span> - 指定した階層のボス部屋に「スペクテイターモード（透明・無敵状態）」でテレポートし、他のプレイヤーの戦闘を観戦できます。</div>
-                <div class="command"><span>/mmodungeon return</span> - 観戦を終了し、観戦コマンドを打った「元の場所」「元のゲームモード」へ安全に帰還します。</div>
-            </div>
-
-            <div class="command-group">
-                <h3>テスト用コマンド</h3>
-                <div class="command"><span>/mmoadmin maxgear</span> - 管理者用。全エンチャントレベル255の最強ネザライト装備一式を取得します。ボス戦のテスト等に使用してください。</div>
-                <div class="command"><span>/mmoitem &lt;装備ID&gt;</span> - 各ボスの固有武器や防具を取得します。（例：levatein, garuda_bow）</div>
-                <div class="command"><span>/mmoboss spawn &lt;ボスID&gt;</span> - 視線先にボスを強制召喚します。（例：arachne）</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= アップデート履歴コンテンツ ================= -->
+    <!-- ================= アップデート履歴 ================= -->
     <div id="updates" class="tab-content">
         <div class="card">
             <h2>📝 パッチノート ＆ 変更履歴</h2>
 
             <div class="update-box">
-                <div class="update-date">アップデート (v2.7) - 最新</div>
-                <ul>
-                    <li><span class="update-category badge-system">演出強化</span> <strong>ボスの演出を大強化！デュラハンが骨馬に騎乗！</strong><br>
-                        8層のデュラハンが骨馬（スケルトンホース）に乗って突進してくるようになりました。9層ユグドラシルの姿を不気味な「クリーキング」に変更。さらに、全ボスの足元や全身に強力な魔法陣やオーラが常時展開されるようになりました！
-                    </li>
-                    <li><span class="update-category badge-fix">UI改善</span> <strong>右側の画面（スコアボード）の完全改修！</strong><br>
-                        右側の画面が二重に表示されたり、チラついたりするバグを完全に修正しました。赤い数字も消え、Jobsの所持金がリアルタイム（瞬時）に反映・更新されるようになりました。
-                    </li>
-                    <li><span class="update-category badge-balance">バランス調整</span> <strong>階層インフレシステムの導入！</strong><br>
-                        1層から9層に向けて、ボスのHP・攻撃力・固有武器の威力・防具の硬さが「階段状」に強くなるように再設計しました。前の層の武器を限界突破（+10）させることで次の層に進める、よりハクスラらしい難易度曲線になっています。
-                    </li>
+                <div class="update-date">最新アップデート (v2.7)</div>
+                <ul class="custom-list">
+                    <li><span class="badge badge-fix">バグ修正</span> <strong>後半ボスのSP獲得バグ修正</strong><br>ゴライアス以降のボスでSPを獲得した際、正常にスキルGUIで消費できるよう修正。</li>
+                    <li><span class="badge badge-fix">バグ修正</span> <strong>鍛冶(Forge)の攻撃速度バグ修正</strong><br>武器を合成・強化した際に、ベースの攻撃速度（振りの速さ）が消滅してしまうマインクラフト仕様のバグを修正。</li>
+                    <li><span class="badge badge-fix">バグ修正</span> <strong>ショップの購入・ドロップ仕様改善</strong><br>インベントリが満杯でも、スタック可能なアイテムなら購入できるように改善。入りきらない分は足元にドロップ。</li>
+                    <li><span class="badge badge-system">演出強化</span> <strong>ボスの演出を大強化！</strong><br>8層のデュラハンが骨馬に乗って突進してくるように！9層ユグドラシルの姿を不気味な「クリーキング」に変更。全ボスの足元に魔法陣やオーラを追加。</li>
+                    <li><span class="badge badge-fix">UI改善</span> <strong>右側の画面（スコアボード）の完全改修！</strong><br>スコアボードが二重に表示されるバグを修正し、所持金がリアルタイム（瞬時）に反映されるように。</li>
+                    <li><span class="badge badge-balance">バランス調整</span> <strong>階層インフレシステムの導入！</strong><br>1層から9層に向けて、ボスのHP・攻撃力・装備威力が「階段状」に強くなるよう再設計。</li>
                 </ul>
             </div>
 
             <div class="update-box">
                 <div class="update-date">アップデート (v2.6)</div>
-                <ul>
-                    <li><span class="update-category badge-system">システム</span> <strong>防具スキルのトグル式 ＆ ダイナミックススコアボードの導入！</strong><br>
-                        <code>Shift + F</code> で使いたい防具の部位を切り替え、<code>F</code> で発動できるようになりました。<br>
-                        また、武器を持った時だけ、画面右側に自分のコンボスキル一覧（ダイナミックスコアボード）が自動で表示されるようになり、戦闘中の操作性が飛躍的に向上しました！
-                    </li>
+                <ul class="custom-list">
+                    <li><span class="badge badge-system">システム</span> <strong>防具スキルのトグル式 ＆ ダイナミックスコアボード導入！</strong><br><code>Shift + F</code> で防具部位を切り替え、<code>F</code> で発動可能に。戦闘中は右側の画面が自動で「コンボスキル一覧表」に切り替わります。</li>
                 </ul>
             </div>
 
             <div class="update-box">
                 <div class="update-date">アップデート (v2.5)</div>
-                <ul>
-                    <li><span class="update-category badge-balance">バランス調整</span> <strong>全スキルのマナ消費半減 ＆ クールダウン導入！</strong><br>
-                        武器のすべての魔法スキルに対して、消費マナを約50%軽減しました。その代わり、スキルごとに3秒〜15秒の「クールダウン（再使用待機時間）」を追加。大技の連打を防ぎ、基本技と組み合わせて戦う戦略的なバトルシステムになりました。
-                    </li>
-                    <li><span class="update-category badge-new">新機能</span> <strong>ボス部屋の観戦モードを追加！</strong><br>
-                        <code>/mmodungeon spectate &lt;階層&gt;</code> で、戦闘中のプレイヤーを透明な状態で安全に見学できるようになりました。
-                    </li>
+                <ul class="custom-list">
+                    <li><span class="badge badge-balance">バランス調整</span> <strong>全スキルのマナ消費半減 ＆ クールダウン導入！</strong><br>魔法スキルの消費マナを約50%軽減。代わりに3秒〜15秒のクールダウンを追加し、戦略性を向上。</li>
+                    <li><span class="badge badge-new">新機能</span> <strong>ボス部屋の観戦モードを追加！</strong><br><code>/mmodungeon spectate [階層]</code> で、他プレイヤーの戦闘を透明な状態で安全に見学可能に。</li>
                 </ul>
             </div>
 
             <div class="update-box">
                 <div class="update-date">大型アップデート (v2.4)</div>
-                <ul>
-                    <li><span class="update-category badge-new">新機能</span> <strong>全9階層のボスと武器が完全実装！</strong><br>
-                        フェンリル、ガルーダ、エニグマ、デュラハン、ユグドラシルの5体のボスを追加しました。これに伴い、全9種の武器とそれぞれ12個（計108個）の魔法スキルが実装されました。
-                    </li>
-                    <li><span class="update-category badge-system">システム</span> <strong>「3段階ギミック」システムの導入！</strong><br>
-                        全ボスに対して「第一形態」「第二形態（激怒）」「大技」の3つのギミックを追加。ボスのセリフやダンジョン内の本からヒントを探し出す謎解き要素が追加されました。
-                    </li>
-                    <li><span class="update-category badge-fix">改善</span> <strong>ダンジョンオート保険の追加！</strong><br>
-                        <code>/insurance auto</code> が実装され、死亡しても自動で500円を支払い保険に再加入するようになりました。
-                    </li>
-                    <li><span class="update-category badge-system">超軽量化</span> <strong>サーバー負荷の極限までの削減！</strong><br>
-                        ボスの索敵ループやパッシブスキル判定の無駄を徹底的に排除。何十人が一斉にスキルを乱れ撃ちしてもサーバーが重くならない「超軽量化」を実現しました。
-                    </li>
+                <ul class="custom-list">
+                    <li><span class="badge badge-new">新機能</span> <strong>全9階層のボスと武器が完全実装！</strong><br>全9種のボスと固有武器、それぞれ12個（計108個）の魔法スキルが実装。</li>
+                    <li><span class="badge badge-system">システム</span> <strong>「3段階ギミック」システムの導入！</strong><br>第一形態、第二形態、大技の3つのギミックを追加。</li>
+                    <li><span class="badge badge-fix">改善</span> <strong>ダンジョンオート保険の追加！</strong><br><code>/insurance auto</code> が実装され、自動で保険更新が可能に。</li>
                 </ul>
             </div>
+        </div>
+    </div>
 
-            <div class="update-box">
-                <div class="update-date">過去のアップデート (v2.1 〜 v2.3)</div>
-                <ul>
-                    <li><span class="update-category badge-balance">調整</span> ダンジョンのフラット化（※v2.7でインフレ仕様へ再調整）</li>
-                    <li><span class="update-category badge-new">新機能</span> 装備強化（Forge）システムを導入。</li>
-                    <li><span class="update-category badge-fix">修正</span> フレンドリーファイアの完全無効化。パーティメンバー同士に攻撃が当たらなくなりました。</li>
-                    <li><span class="update-category badge-new">新機能</span> ダンジョンポーチ（/mmostash）を追加。</li>
-                    <li><span class="update-category badge-balance">調整</span> ボス討伐時のレアドロップ天井システムを追加。</li>
-                </ul>
-            </div>
+    <!-- ================= 運営・管理者向け ================= -->
+    <div id="admin" class="tab-content">
+        <div class="card">
+            <h2>🛡️ 運営向けシステム・建築コマンド</h2>
+            
+            <h3 style="color: var(--accent-blue);">ダンジョン設営</h3>
+            <span class="cmd-block">/mmodungeon setgate [階層1~9]</span>
+            <span class="cmd-desc">視線先のブロックを入場ゲート（クリック判定）に設定。</span>
+            <span class="cmd-block">/mmodungeon setbossroom [階層1~9]</span>
+            <span class="cmd-desc">現在位置をボス部屋の転送先（TP位置）に設定。</span>
+            <span class="cmd-block">/mmodungeon setlobby [階層1~9]</span>
+            <span class="cmd-desc">現在位置をボス討伐後の帰還用ロビーに設定。</span>
+            <span class="cmd-block">/mmodungeon book [階層1~9]</span>
+            <span class="cmd-desc"><strong>[重要]</strong> その階層の「ギミックのヒントが書かれた本」を取得。ボス部屋の前の書見台に設置してください。</span>
+
+            <h3 style="color: var(--accent-purple); margin-top:30px;">👀 観戦とホログラム</h3>
+            <span class="cmd-block">/mmoadmin holo [階層1~9]</span>
+            <span class="cmd-desc">現在位置に、指定階層のヒントが書かれた美麗なホログラムを自動生成します。(DecentHolograms必須)</span>
+            <span class="cmd-block">/mmodungeon spectate [階層1~9]</span>
+            <span class="cmd-desc">指定した階層のボス部屋に「スペクテイターモード」でテレポートし、観戦します。</span>
+            <span class="cmd-block">/mmodungeon return</span>
+            <span class="cmd-desc">観戦を終了し、元の場所へ安全に帰還します。</span>
+
+            <h3 style="color: var(--accent-red); margin-top:30px;">テスト用コマンド</h3>
+            <span class="cmd-block">/mmoadmin maxgear</span>
+            <span class="cmd-desc">全エンチャントLv255の最強装備一式を取得。デバッグ用。</span>
+            <span class="cmd-block">/mmoitem [装備ID]</span>
+            <span class="cmd-desc">各ボスの固有武器や防具を取得します。（例：levatein, garuda_bow）</span>
+            <span class="cmd-block">/mmoboss spawn [ボスID]</span>
+            <span class="cmd-desc">視線先にボスを強制召喚します。（例：arachne）</span>
         </div>
     </div>
 
@@ -464,15 +603,19 @@
 
 <script>
     function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
+        // 全てのタブコンテンツを非表示
+        let tabcontent = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabcontent.length; i++) {
             tabcontent[i].classList.remove("active");
         }
-        tablinks = document.getElementsByClassName("tab-button");
-        for (i = 0; i < tablinks.length; i++) {
+        
+        // 全てのタブボタンから active クラスを削除
+        let tablinks = document.getElementsByClassName("tab-button");
+        for (let i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("active");
         }
+        
+        // 指定されたタブを表示し、押されたボタンをアクティブにする
         document.getElementById(tabName).classList.add("active");
         evt.currentTarget.classList.add("active");
     }
