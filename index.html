@@ -232,6 +232,53 @@
             font-weight: bold;
         }
 
+        /* FAQ用のアコーディオン（Details） */
+        details.faq-item {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        details.faq-item:hover {
+            background-color: #f1f5f9;
+        }
+        details.faq-item summary {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            outline: none;
+            list-style: none;
+            position: relative;
+            padding-left: 25px;
+        }
+        details.faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        details.faq-item summary::before {
+            content: 'Q.';
+            position: absolute;
+            left: 0;
+            color: var(--accent-main);
+        }
+        details.faq-item p {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            color: var(--text-light);
+            padding-left: 25px;
+            position: relative;
+        }
+        details.faq-item p::before {
+            content: 'A.';
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: var(--warning);
+        }
+
         /* 動くWeb（スクロールアニメーション）用のクラス */
         .fade-up {
             opacity: 0;
@@ -273,9 +320,10 @@
                 <h3>📋 目次</h3>
                 <ul>
                     <li><a href="#guide">🔰 初心者ガイド (必読)</a></li>
-                    <li><a href="#combat">⚔️ バトル＆装備強化</a></li>
-                    <li><a href="#economy">💰 職業・お店・お金稼ぎ</a></li>
-                    <li><a href="#boss">🐉 ボス攻略指南</a></li>
+                    <li><a href="#combat">⚔️ バトル＆システム</a></li>
+                    <li><a href="#economy">💰 職業・お金稼ぎ</a></li>
+                    <li><a href="#boss">🐉 ボス攻略＆図鑑</a></li>
+                    <li><a href="#faq">❓ よくある質問 (FAQ)</a></li>
                     <li><a href="#updates">📝 パッチノート</a></li>
                 </ul>
             </nav>
@@ -343,9 +391,9 @@
             </section>
 
 
-            <!-- ================= バトル＆装備強化 ================= -->
+            <!-- ================= バトル＆システム ================= -->
             <section id="combat" class="section">
-                <h2 class="section-title">⚔️ バトル ＆ 装備強化</h2>
+                <h2 class="section-title">⚔️ バトル ＆ システム</h2>
                 
                 <div class="card fade-up">
                     <h3>魔法スキルのカスタマイズ</h3>
@@ -378,6 +426,13 @@
                     <span class="cmd-block">/mmoforge</span>
                     <span class="cmd-desc">鍛冶GUIを開きます。最大 +10 まで強化可能です。</span>
                     <p>全く同じ名前の装備を2つ用意し、ベースと素材枠にセットして合成します。</p>
+                </div>
+                
+                <div class="card fade-up">
+                    <h3>👑 称号（タイトル）システム</h3>
+                    <p>特定の強大なボスを討伐すると、特別な「称号」を獲得できることがあります。<br>獲得した称号は、頭上やチャット欄で他のプレイヤーにアピールすることができます！</p>
+                    <span class="cmd-block">/mmotitle</span>
+                    <span class="cmd-desc">称号設定メニューを開き、獲得した称号の中から好きなものを装備できます。</span>
                 </div>
             </section>
 
@@ -415,7 +470,7 @@
 
             <!-- ================= ボス攻略指南 ================= -->
             <section id="boss" class="section">
-                <h2 class="section-title">🐉 ボス攻略指南</h2>
+                <h2 class="section-title">🐉 ボス攻略 ＆ 図鑑</h2>
                 
                 <div class="card fade-up">
                     <p>各階層のボスは非常に強力で、ただ殴るだけではダメージが90%カットされてしまいます。以下の3つのギミックを理解し、仲間と協力して解除しましょう。</p>
@@ -434,6 +489,50 @@
                         <h4 style="color: var(--accent-main);">③ ランダム大技（即死回避）</h4>
                         <p>大技の詠唱が始まったら、周囲に現れる特定のブロックを10秒以内に破壊・解除してください。失敗すると全滅します。</p>
                     </div>
+                </div>
+
+                <div class="card fade-up">
+                    <h3 style="border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">📖 階層ボス図鑑</h3>
+                    <p>現在判明している全9階層のボス一覧です。あなたは果たして最上階の絶望に打ち勝つことができるでしょうか…？</p>
+                    <ul class="clean-list">
+                        <li><strong>第1階層:</strong> 炎の化身 イフリート</li>
+                        <li><strong>第2階層:</strong> 星を射る者 サジタリウス</li>
+                        <li><strong>第3階層:</strong> 海神 リヴァイアサン</li>
+                        <li><strong>第4階層:</strong> 蜘蛛の女王 アラクネ</li>
+                        <li><strong>第5階層:</strong> 氷狼 フェンリル</li>
+                        <li><strong>第6階層:</strong> 天空の覇者 ガルーダ</li>
+                        <li><strong>第7階層:</strong> 謎の怪物 エニグマ</li>
+                        <li><strong>第8階層:</strong> 首無し騎士 デュラハン</li>
+                        <li><strong>第9階層:</strong> 世界樹の呪い ユグドラシル</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ================= FAQ ================= -->
+            <section id="faq" class="section">
+                <h2 class="section-title">❓ よくある質問 (FAQ)</h2>
+                
+                <div class="card fade-up">
+                    <details class="faq-item">
+                        <summary>最初の装備はどうやって手に入れるの？</summary>
+                        <p><code>/mmoshop</code> の「闇の行商人」から購入するか、オークション(<code>/ah</code>)で他のプレイヤーが安く出品している装備を買うのがおすすめです。そのためにはまず職業(<code>/jobs</code>)でお金を稼ぎましょう。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>ボスのギミックに使うアイテムが分かりません。</summary>
+                        <p>ボス部屋の前や道中にある『冒険者の手記（本）』にヒントが書かれています。また、ギミックの解除アイテムは「前の階層のボス素材」であることが多いため、素材はすぐには売らずに少しストックしておくことを推奨します。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>死んでアイテムを全部なくしてしまいました…</summary>
+                        <p>マインクラフトの仕様上、死んだ場所にアイテムを落としますが、時間経過などで消滅する可能性があります。このような全ロス事故を防ぐため、必ず <code>/insurance auto</code> でダンジョン保険に加入してから挑むようにしてください。保険があれば死んでもアイテムをロストしません。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>パーティはどうやって組むの？</summary>
+                        <p><code>/party invite [名前]</code> で招待を送り、相手が <code>/party accept</code> と打てば結成されます。パーティを組むと味方に魔法や攻撃が当たらなくなるため、ボス戦では必須となります。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>ボスのドロップがインベントリに入りませんでした。</summary>
+                        <p>自分のインベントリがいっぱいの状態でボスを倒した場合、報酬はすべて「ダンジョンポーチ」の中に保護されています。<code>/mmostash</code> コマンドを打って中身を確認し、自分のインベントリを整理してから取り出してください。</p>
+                    </details>
                 </div>
             </section>
 
